@@ -73,3 +73,5 @@ end
 gem "dotenv-rails", "~> 2.8"
 
 gem "devise", "~> 4.8"
+
+gem "sidekiq", "~> 6.5"
