@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post '/webhooks/:source', to: 'webhooks#create'
 
   resource :dashboard
-  resource :accounts
+  resources :accounts
+  resources :payouts, only: [:create]
 end

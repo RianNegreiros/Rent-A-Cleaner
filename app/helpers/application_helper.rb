@@ -6,7 +6,7 @@ module ApplicationHelper
     },
     {
       name: 'Accounts',
-      path: accounts_path
+      path: '/accounts'
     }].map do |item|
       {
         name: item[:name],
