@@ -1,0 +1,41 @@
+<% content_for :page_title do %>
+  Products
+<% end %>
+
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <div class="flex justify-between items-center pb-4">
+        <div>
+          <a href="<%= new_product_path %>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New Product</a>
+        </div>
+    </div>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Product name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Price
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <%= link_to product.name, product %>
+                </th>
+                <td class="py-4 px-6">
+                    <%= number_to_currency(product.product_data&.default_price&.unit_amount&.fdiv(100.0)) %>                </td>
+                <td class="py-4 px-6">
+                    <a href="<%= edit_product_path(product) %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
