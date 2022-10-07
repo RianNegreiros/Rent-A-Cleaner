@@ -24,9 +24,9 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <% menu_items.each do |item| %>
                 <% if item[:active] %>
-                  <a href="<%= item[:path] %>" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"> <%=item[:name] %></a>
+                  <a href="<%= item[:path] %>" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"> <%= item[:name] %></a>
                 <% else %>
-                  <a href="<%= item[:path] %>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> <%=item[:name] %></a>
+                  <a href="<%= item[:path] %>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> <%= item[:name] %></a>
                 <% end %>
               <% end %>
             </div>
