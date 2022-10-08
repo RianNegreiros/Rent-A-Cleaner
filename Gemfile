@@ -77,3 +77,5 @@ gem "devise", "~> 4.8"
 gem "sidekiq", "~> 6.5"
 
 gem "stripe", "~> 7.1"
+
+gem "image_processing", "~> 1.12"
