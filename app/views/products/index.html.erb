@@ -30,7 +30,8 @@
                     <%= link_to product.name, product %>
                 </th>
                 <td class="py-4 px-6">
-                    <%= number_to_currency(product.product_data&.default_price&.unit_amount&.fdiv(100.0)) %>                </td>
+                    <%= number_to_currency(product.price) %>                
+                </td>
                 <td class="py-4 px-6">
                     <a href="<%= edit_product_path(product) %>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
