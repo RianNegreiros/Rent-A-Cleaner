@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     if @product.save
       service = StripeProduct.new(params, @product)
       service.create_product
-      redirect_to products_path
+      redirect_to @product
     else
       render :new
     end

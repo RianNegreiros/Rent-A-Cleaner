@@ -79,3 +79,7 @@ gem "sidekiq", "~> 6.5"
 gem "stripe", "~> 7.1"
 
 gem "image_processing", "~> 1.12"
+
+gem "cloudinary", "~> 1.23"
+
+gem "ruby-vips", "~> 2.1"
