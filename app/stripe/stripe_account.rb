@@ -27,6 +27,19 @@ class StripeAccount
     }, header)
   end
 
+  def update_account_branding
+    store = account.store
+    return if store.primary_color.nil? || store.secondary_color.nil?
+    Stripe::Account.update(account.stripe_id, {
+      settings: {
+        branding: {
+          primary_color: store.primary_color,
+          secondary_color: store.secondary_color,
+        },
+      }
+    }, header)
+  end
+
   def create_account
     return if account.stripe_id.present?
 
@@ -41,8 +54,8 @@ class StripeAccount
       capabilities: {
         card_payments: { requested: true },
         transfers: { requested: true },
-        # treasury: { requested: true },
-        # card_issuing: { requested: true },
+        treasury: { requested: true },
+        #card_issuing: { requested: true },
       },
     )
 
@@ -81,7 +94,7 @@ class StripeAccount
     financial_account = Stripe::Treasury::FinancialAccount.create({
       supported_currencies: ['usd'],
       features: {
-        card_issuing: { requested: true },
+        #card_issuing: { requested: true },
         deposit_insurance: { requested: true },
         financial_addresses: { aba: { requested: true } },
         inbound_transfers: { ach: { requested: true } },
