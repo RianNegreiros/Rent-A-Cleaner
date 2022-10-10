@@ -1,11 +1,14 @@
 <% content_for :page_title do %>
-  Products
+    Products
 <% end %>
 
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+<div class="overflow-x-auto relative sm:rounded-lg">
     <div class="flex justify-between items-center pb-4">
+        <div class="sm:flex-auto">
+            <p class="mt-2 text-sm text-gray-700">A list of all the products in your account.</p>
+            </div>
         <div>
-          <a href="<%= new_product_path %>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New Product</a>
+            <a href="<%= new_product_path %>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">New Product</a>
         </div>
     </div>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
