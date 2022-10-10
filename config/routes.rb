@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resource :checkout
   resource :store
   
+  resources :products do
+    resources :attachments, shallow: true
+  end
   resources :accounts
   resources :payouts, only: [:create]
   resources :products
+  resources :customers
 end
