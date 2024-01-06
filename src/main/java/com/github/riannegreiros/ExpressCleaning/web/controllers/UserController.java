@@ -30,7 +30,7 @@ public class UserController {
   private UserService service;
 
   @GetMapping
-  public ModelAndView buscarTodos() {
+  public ModelAndView getAll() {
     var modelAndView = new ModelAndView("admin/user/list");
 
     modelAndView.addObject("users", service.getAll());
@@ -64,7 +64,7 @@ public class UserController {
       return "admin/user/register-form";
     }
 
-    return "redirect:/admin/user";
+    return "redirect:/admin/users";
   }
 
   @GetMapping("/{id}/edit")

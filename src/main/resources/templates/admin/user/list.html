@@ -13,7 +13,7 @@
           <div class="card-header">
             <div class="card-title">User list</div>
             <div class="card-tools">
-              <a th:href="@{/admin/user/register}" class="btn btn-sm btn-success">New user</a>
+              <a th:href="@{/admin/users/register}" class="btn btn-sm btn-success">New user</a>
             </div>
           </div>
           <div class="card-body">
@@ -29,7 +29,7 @@
               <tbody>
                 <tr th:each="user : ${users}">
                   <td th:text="${user.id}"></td>
-                  <td th:text="${user.nomeCompleto}"></td>
+                  <td th:text="${user.fullname}"></td>
                   <td th:text="${user.email}"></td>
                   <td>
                     <a class="btn btn-sm btn-warning" th:href="@{/admin/users/{id}/edit (id=${user.id})}">
