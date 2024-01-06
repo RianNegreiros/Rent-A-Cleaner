@@ -3,35 +3,32 @@ package com.github.riannegreiros.ExpressCleaning.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.github.riannegreiros.ExpressCleaning.core.repositories.ServiceRepository;
+import com.github.riannegreiros.ExpressCleaning.web.dtos.FlashMessage;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.ServiceForm;
-import com.github.riannegreiros.ExpressCleaning.web.mappers.ServiceMapper;
+import com.github.riannegreiros.ExpressCleaning.web.services.ServiceService;
 
 import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequestMapping("/admin/services")
 public class ServiceController {
 
   @Autowired
-  private ServiceRepository repository;
-
-  @Autowired
-  private ServiceMapper mapper;
+  private ServiceService service;
 
   @GetMapping
-  public ModelAndView findAll() {
+  public ModelAndView getAll() {
     var modelAndView = new ModelAndView("admin/service/list");
 
-    modelAndView.addObject("services", repository.findAll());
+    modelAndView.addObject("services", service.getAll());
 
     return modelAndView;
   }
@@ -46,45 +43,44 @@ public class ServiceController {
   }
 
   @PostMapping("/register")
-  public String register(@Valid @ModelAttribute("form") ServiceForm form, BindingResult result) {
+  public String register(@Valid @ModelAttribute("form") ServiceForm form, BindingResult result,
+      RedirectAttributes attrs) {
     if (result.hasErrors()) {
       return "admin/service/form";
     }
 
-    var service = mapper.toModel(form);
-    repository.save(service);
+    service.register(form);
+    attrs.addFlashAttribute("alert", new FlashMessage("alert-success", "Service successfully registered!"));
 
     return "redirect:/admin/services";
   }
 
-  @GetMapping("/{id}/editar")
+  @GetMapping("/{id}/edit")
   public ModelAndView edit(@PathVariable Long id) {
     var modelAndView = new ModelAndView("admin/service/form");
 
-    var service = repository.getReferenceById(id);
-    var form = mapper.toForm(service);
-
-    modelAndView.addObject("form", form);
+    modelAndView.addObject("form", service.getById(id));
 
     return modelAndView;
   }
 
-  @PostMapping("/{id}/editar")
-  public String edit(@PathVariable Long id, @Valid @ModelAttribute("form") ServiceForm form, BindingResult result) {
+  @PostMapping("/{id}/edit")
+  public String edit(@PathVariable Long id, @Valid @ModelAttribute("form") ServiceForm form, BindingResult result,
+      RedirectAttributes attrs) {
     if (result.hasErrors()) {
       return "admin/service/form";
     }
 
-    var service = mapper.toModel(form);
-    service.setId(id);
-    repository.save(service);
+    service.edit(form, id);
+    attrs.addFlashAttribute("alert", new FlashMessage("alert-success", "Service successfully edited!"));
 
     return "redirect:/admin/services";
   }
 
   @GetMapping("/{id}/delete")
-  public String excluir(@PathVariable Long id) {
-    repository.deleteById(id);
+  public String delete(@PathVariable Long id, RedirectAttributes attrs) {
+    service.deleteById(id);
+    attrs.addFlashAttribute("alert", new FlashMessage("alert-success", "Service successfully deleted!"));
 
     return "redirect:/admin/services";
   }

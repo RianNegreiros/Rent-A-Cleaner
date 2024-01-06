@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Service {
+public class ServiceModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -65,10 +65,10 @@ public class Service {
   @Column(nullable = false)
   private Integer position;
 
-  public Service() {
+  public ServiceModel() {
   }
 
-  public Service(Long id, String name, BigDecimal minValue, Integer numHours, Integer percentageCommission,
+  public ServiceModel(Long id, String name, BigDecimal minValue, Integer numHours, Integer percentageCommission,
       Integer bedroomHours, BigDecimal bedroomValue, Integer livingRoomHours, BigDecimal livingRoomValue,
       Integer bathroomHours, BigDecimal bathroomValue, Integer kitchenHours, BigDecimal kitchenValue,
       Integer backyardHours, BigDecimal backyardValue, Integer othersHours, BigDecimal othersValue, Integer position) {
@@ -252,7 +252,7 @@ public class Service {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Service other = (Service) obj;
+    ServiceModel other = (ServiceModel) obj;
     if (id == null) {
       if (other.id != null)
         return false;
