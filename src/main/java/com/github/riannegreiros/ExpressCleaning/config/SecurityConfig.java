@@ -26,78 +26,78 @@ import com.github.riannegreiros.ExpressCleaning.core.filters.AccessTokenRequestF
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-  @Autowired
-  private AccessTokenRequestFilter accessTokenRequestFilter;
+        @Autowired
+        private AccessTokenRequestFilter accessTokenRequestFilter;
 
-  @Autowired
-  private AuthenticationEntryPoint authenticationEntryPoint;
+        @Autowired
+        private AuthenticationEntryPoint authenticationEntryPoint;
 
-  @Autowired
-  private AccessDeniedHandler accessDeniedHandler;
+        @Autowired
+        private AccessDeniedHandler accessDeniedHandler;
 
-  @Value("${rememberMe.key}")
-  private String rememberMeKey;
+        @Value("${rememberMe.key}")
+        private String rememberMeKey;
 
-  @Value("${rememberMe.validitySeconds}")
-  private int rememberMeValiditySeconds;
+        @Value("${rememberMe.validitySeconds}")
+        private int rememberMeValiditySeconds;
 
-  @Bean
-  @Order(1)
-  public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
-    http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
-        .requestMatchers("/api/**", "/auth/**"))
-        .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
-            .anyRequest()
-            .permitAll())
-        .csrf(csrfCustomizer -> csrfCustomizer
-            .disable())
-        .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
-        .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
-            .authenticationEntryPoint(authenticationEntryPoint)
-            .accessDeniedHandler(accessDeniedHandler))
-        .cors(Customizer.withDefaults());
+        @Bean
+        @Order(1)
+        public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
+                http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
+                                .requestMatchers("/api/**", "/auth/**"))
+                                .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
+                                                .anyRequest()
+                                                .permitAll())
+                                .csrf(csrfCustomizer -> csrfCustomizer
+                                                .disable())
+                                .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                                .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
+                                                .authenticationEntryPoint(authenticationEntryPoint)
+                                                .accessDeniedHandler(accessDeniedHandler))
+                                .cors(Customizer.withDefaults());
 
-    return http.build();
-  }
+                return http.build();
+        }
 
-  @Bean
-  @Order(2)
-  public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
-    http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
-        .requestMatchers("/admin/**"))
-        .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
-            .requestMatchers("/admin/reset-password/**").permitAll()
-            .anyRequest()
-            .hasAnyAuthority(UserType.ADMIN.name()))
-        .formLogin(formLoginCustomizer -> formLoginCustomizer
-            .loginPage("/admin/login")
-            .usernameParameter("email")
-            .passwordParameter("password")
-            .defaultSuccessUrl("/admin/services")
-            .permitAll())
-        .logout(logoutCustomizer -> logoutCustomizer
-            .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
-            .logoutSuccessUrl("/admin/login"))
-        .rememberMe(rememberMeCustomizer -> rememberMeCustomizer
-            .rememberMeParameter("remenber-me")
-            .tokenValiditySeconds(rememberMeValiditySeconds)
-            .key(rememberMeKey))
-        .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
-            .accessDeniedPage("/admin/login"));
+        @Bean
+        @Order(2)
+        public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
+                http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
+                                .requestMatchers("/admin/**"))
+                                .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
+                                                .requestMatchers("/admin/reset-password/**").permitAll()
+                                                .anyRequest()
+                                                .hasAnyAuthority(UserType.ADMIN.name()))
+                                .formLogin(formLoginCustomizer -> formLoginCustomizer
+                                                .loginPage("/admin/login")
+                                                .usernameParameter("email")
+                                                .passwordParameter("password")
+                                                .defaultSuccessUrl("/admin/services")
+                                                .permitAll())
+                                .logout(logoutCustomizer -> logoutCustomizer
+                                                .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
+                                                .logoutSuccessUrl("/admin/login"))
+                                .rememberMe(rememberMeCustomizer -> rememberMeCustomizer
+                                                .rememberMeParameter("remenber-me")
+                                                .tokenValiditySeconds(rememberMeValiditySeconds)
+                                                .key(rememberMeKey))
+                                .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
+                                                .accessDeniedPage("/admin/login"));
 
-    return http.build();
-  }
+                return http.build();
+        }
 
-  @Bean
-  public WebSecurityCustomizer webSecurityCustomizer() {
-    return web -> web.ignoring()
-        .requestMatchers("/webjars/**", "/img/**");
-  }
+        @Bean
+        public WebSecurityCustomizer webSecurityCustomizer() {
+                return web -> web.ignoring()
+                                .requestMatchers("/webjars/**", "/img/**");
+        }
 
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-    return configuration.getAuthenticationManager();
-  }
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+                return configuration.getAuthenticationManager();
+        }
 }
