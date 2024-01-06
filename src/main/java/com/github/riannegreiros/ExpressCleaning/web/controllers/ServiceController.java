@@ -17,6 +17,15 @@ public class ServiceController {
   @Autowired
   private ServiceRepository repository;
 
+  @GetMapping
+  public ModelAndView findAll() {
+    var modelAndView = new ModelAndView("admin/service/list");
+
+    modelAndView.addObject("services", repository.findAll());
+
+    return modelAndView;
+  }
+
   @GetMapping("/register")
   public ModelAndView register() {
     var modelAndView = new ModelAndView("admin/service/form");
@@ -30,6 +39,6 @@ public class ServiceController {
   public String register(Service service) {
     repository.save(service);
 
-    return "redirect:/admin/register";
+    return "redirect:/admin/services";
   }
 }
