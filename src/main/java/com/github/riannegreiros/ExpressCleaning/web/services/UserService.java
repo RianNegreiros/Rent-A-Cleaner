@@ -3,10 +3,12 @@ package com.github.riannegreiros.ExpressCleaning.web.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.FieldError;
 
 import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
+import com.github.riannegreiros.ExpressCleaning.core.exceptions.IncorrectPassword;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.PasswordsDoNotMatchException;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.UserNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
@@ -30,6 +32,9 @@ public class UserService {
   @Autowired
   private UserValidator validator;
 
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
   public List<User> getAll() {
     return repository.findAll();
   }
@@ -39,7 +44,9 @@ public class UserService {
 
     var model = mapper.toModel(form);
 
-    model.setPassword(form.getPassword());
+    var hashedPassword = passwordEncoder.encode(model.getPassword());
+
+    model.setPassword(hashedPassword);
     model.setUserType(UserType.ADMIN);
 
     validator.validate(model);
@@ -91,10 +98,21 @@ public class UserService {
 
     validateConfirmPassword(form);
 
+    var currentPassword = user.getPassword();
+    var oldPassword = form.getOldPassword();
     var password = form.getPassword();
 
-    user.setPassword(password);
+    if (!passwordEncoder.matches(oldPassword, currentPassword)) {
+      var message = "The old password is incorrect";
+      var fieldError = new FieldError(form.getClass().getName(), "oldPassword", oldPassword, false, null, null,
+          message);
 
+      throw new IncorrectPassword(message, fieldError);
+    }
+
+    var newPassword = passwordEncoder.encode(password);
+
+    user.setPassword(newPassword);
     repository.save(user);
   }
 
