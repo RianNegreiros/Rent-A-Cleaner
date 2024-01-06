@@ -20,14 +20,14 @@ public class Service {
   @Column(name = "min_value", nullable = false)
   private BigDecimal minValue;
 
-  @Column(name = "qtd_hours", nullable = false)
-  private Integer qtdHours;
+  @Column(name = "num_hours", nullable = false)
+  private Integer numHours;
 
-  @Column(name = "commission_porcentage", nullable = false)
-  private Integer commissionPorcentage;
+  @Column(name = "percentage_commission", nullable = false)
+  private Integer percentageCommission;
 
   @Column(name = "bedroom_hours", nullable = false)
-  private Integer bedroomHours;
+  private Integer BedroomHours;
 
   @Column(name = "bedroom_value", nullable = false)
   private BigDecimal bedroomValue;
@@ -68,16 +68,16 @@ public class Service {
   public Service() {
   }
 
-  public Service(Long id, String name, BigDecimal minValue, Integer qtdHours, Integer commissionPorcentage,
+  public Service(Long id, String name, BigDecimal minValue, Integer numHours, Integer percentageCommission,
       Integer bedroomHours, BigDecimal bedroomValue, Integer livingRoomHours, BigDecimal livingRoomValue,
       Integer bathroomHours, BigDecimal bathroomValue, Integer kitchenHours, BigDecimal kitchenValue,
       Integer backyardHours, BigDecimal backyardValue, Integer othersHours, BigDecimal othersValue, Integer position) {
     this.id = id;
     this.name = name;
     this.minValue = minValue;
-    this.qtdHours = qtdHours;
-    this.commissionPorcentage = commissionPorcentage;
-    this.bedroomHours = bedroomHours;
+    this.numHours = numHours;
+    this.percentageCommission = percentageCommission;
+    BedroomHours = bedroomHours;
     this.bedroomValue = bedroomValue;
     this.livingRoomHours = livingRoomHours;
     this.livingRoomValue = livingRoomValue;
