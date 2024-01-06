@@ -43,6 +43,22 @@ public class ServiceController {
     return "redirect:/admin/services";
   }
 
+  @GetMapping
+  public ModelAndView edit(@PathVariable Long id) {
+    var modelAndView = new ModelAndView("admin/service/form");
+
+    modelAndView.addObject("service", repository.getReferenceById(id));
+
+    return modelAndView;
+  }
+
+  @PostMapping
+  public String edit(@PathVariable Long id, Service service) {
+    repository.save(service);
+
+    return "redirect:/admin/services";
+  }
+
   @GetMapping("/{id}/delete")
   public String excluir(@PathVariable Long id) {
     repository.deleteById(id);
