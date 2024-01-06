@@ -54,7 +54,7 @@ public class UserService {
         .orElseThrow(() -> new UserNotFoundException(message));
   }
 
-  public User buscarPorEmail(String email) {
+  public User getByEmail(String email) {
     var message = String.format("User with email %s not found", email);
 
     return repository.findByEmail(email)
@@ -67,7 +67,7 @@ public class UserService {
     return mapper.toForm(user);
   }
 
-  public User editar(UserEditForm form, Long id) {
+  public User edit(UserEditForm form, Long id) {
     var User = getById(id);
 
     var model = mapper.toModel(form);
@@ -86,8 +86,8 @@ public class UserService {
     repository.delete(User);
   }
 
-  public void alterarSenha(ChangePasswordForm form, String email) {
-    var user = buscarPorEmail(email);
+  public void changePassword(ChangePasswordForm form, String email) {
+    var user = getByEmail(email);
 
     validateConfirmPassword(form);
 
