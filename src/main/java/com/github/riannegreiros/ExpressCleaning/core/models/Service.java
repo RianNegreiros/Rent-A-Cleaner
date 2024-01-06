@@ -27,7 +27,7 @@ public class Service {
   private Integer percentageCommission;
 
   @Column(name = "bedroom_hours", nullable = false)
-  private Integer BedroomHours;
+  private Integer bedroomHours;
 
   @Column(name = "bedroom_value", nullable = false)
   private BigDecimal bedroomValue;
@@ -77,7 +77,7 @@ public class Service {
     this.minValue = minValue;
     this.numHours = numHours;
     this.percentageCommission = percentageCommission;
-    BedroomHours = bedroomHours;
+    this.bedroomHours = bedroomHours;
     this.bedroomValue = bedroomValue;
     this.livingRoomHours = livingRoomHours;
     this.livingRoomValue = livingRoomValue;
