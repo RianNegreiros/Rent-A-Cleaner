@@ -2,7 +2,10 @@ package com.github.riannegreiros.ExpressCleaning.core.repositories;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
@@ -12,12 +15,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Optional<User> findByEmail(String email);
 
-  default Boolean isEmailInUse(User user) {
-    if (user.getEmail() == null) {
-      return false;
-    }
-    return findByEmail(user.getEmail())
-        .map(u -> !u.getId().equals(user.getId()))
-        .orElse(false);
-  }
+  Page<User> findByServedCitiesIbgeCode(String codigoIbge, Pageable pageable);
+
+  Boolean existsByServedCitiesIbgeCode(String codigoIbge);
+
+  @Query("SELECT count(*) > 0 FROM User u WHERE u.email = :email and (:id is null or u.id != :id)")
+  Boolean isEmailRegistered(String email, Long id);
 }

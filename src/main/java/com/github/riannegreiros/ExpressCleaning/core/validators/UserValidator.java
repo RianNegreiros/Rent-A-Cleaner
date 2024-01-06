@@ -18,7 +18,7 @@ public class UserValidator {
   }
 
   private void validateEmail(User user) {
-    if (repository.isEmailInUse(user)) {
+    if (repository.isEmailRegistered(user.getEmail(), user.getId())) {
       var mensagem = "There is already a user registered with this e-mail address";
       var fieldError = new FieldError(user.getClass().getName(), "email", user.getEmail(), false, null, null,
           mensagem);
