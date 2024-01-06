@@ -65,10 +65,10 @@
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="BedroomHours">Hours Bedroom</label>
-                    <input type="number" class="form-control" th:field="*{BedroomHours}">
+                    <label for="bedroomHours">Hours Bedroom</label>
+                    <input type="number" class="form-control" th:field="*{bedroomHours}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('BedroomHours')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('bedroomHours')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
@@ -113,10 +113,10 @@
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="hoursBathroom">Hours Bathroom</label>
-                    <input type="number" class="form-control" th:field="*{hoursBathroom}">
+                    <label for="bathroomHours">Hours Bathroom</label>
+                    <input type="number" class="form-control" th:field="*{bathroomHours}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('hoursBathroom')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('bathroomHours')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
@@ -124,10 +124,10 @@
 
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="valueBathroom">Value Bathroom</label>
-                    <input type="text" class="form-control money" th:field="*{valueBathroom}">
+                    <label for="bathroomValue">Value Bathroom</label>
+                    <input type="text" class="form-control money" th:field="*{bathroomValue}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('valueBathroom')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('bathroomValue')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
@@ -185,10 +185,10 @@
               <div class="row">
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="hoursOthers">Hours Others</label>
-                    <input type="number" class="form-control" th:field="*{hoursOthers}">
+                    <label for="othersHours">Hours Others</label>
+                    <input type="number" class="form-control" th:field="*{othersHours}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('hoursOthers')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('othersHours')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
@@ -196,10 +196,10 @@
 
                 <div class="col-md-6 col-sm-12">
                   <div class="form-group">
-                    <label for="valueOthers">Value Other</label>
-                    <input type="text" class="form-control money" th:field="*{valueOthers}">
+                    <label for="othersValue">Value Other</label>
+                    <input type="text" class="form-control money" th:field="*{othersValue}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('valueOthers')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('othersValue')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
