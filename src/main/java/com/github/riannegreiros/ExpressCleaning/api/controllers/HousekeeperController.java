@@ -24,8 +24,8 @@ public class HousekeeperController {
   }
 
   @GetMapping("/availability")
-  public AvailabilityResponse verifAvailabilityByZipCode(
+  public AvailabilityResponse verifyAvailabilityByZipCode(
       @RequestParam(required = false) String zipCode) {
-    return service.verifAvailabilityByZipCode(zipCode);
+    return service.verifyAvailabilityByZipCode(zipCode);
   }
 }

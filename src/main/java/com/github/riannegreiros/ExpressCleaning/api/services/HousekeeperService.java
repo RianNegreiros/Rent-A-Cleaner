@@ -43,7 +43,7 @@ public class HousekeeperService {
     return new HousekeeperLocalityPagedResponse(housekeepers, pageSize, result.getTotalElements());
   }
 
-  public AvailabilityResponse verifAvailabilityByZipCode(String zipCode) {
+  public AvailabilityResponse verifyAvailabilityByZipCode(String zipCode) {
     var ibgeCode = getIbgeCodeByZipCode(zipCode);
 
     var availability = repository.existsByServedCitiesIbgeCode(ibgeCode);
