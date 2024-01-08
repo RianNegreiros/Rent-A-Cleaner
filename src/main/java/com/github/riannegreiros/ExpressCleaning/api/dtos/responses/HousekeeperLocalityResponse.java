@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.dtos.responses;
 
 public class HousekeeperLocalityResponse {
-  private String fullname;
+  private String fullName;
 
   private Double reputation;
 
@@ -12,19 +12,19 @@ public class HousekeeperLocalityResponse {
   public HousekeeperLocalityResponse() {
   }
 
-  public HousekeeperLocalityResponse(String fullname, Double reputation, String userPhoto, String city) {
-    this.fullname = fullname;
+  public HousekeeperLocalityResponse(String fullName, Double reputation, String userPhoto, String city) {
+    this.fullName = fullName;
     this.reputation = reputation;
     this.userPhoto = userPhoto;
     this.city = city;
   }
 
-  public String getFullname() {
-    return fullname;
+  public String getFullName() {
+    return fullName;
   }
 
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
   public Double getReputation() {

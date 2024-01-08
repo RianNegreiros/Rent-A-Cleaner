@@ -48,7 +48,7 @@ public class AccessTokenRequestFilter extends OncePerRequestFilter {
       var errorResponse = ErrorResponse.builder()
           .status(status.value())
           .timestamp(LocalDateTime.now())
-          .mensagem(exception.getLocalizedMessage())
+          .message(exception.getLocalizedMessage())
           .path(request.getRequestURI())
           .build();
 
@@ -70,7 +70,7 @@ public class AccessTokenRequestFilter extends OncePerRequestFilter {
 
     if (isTokenPresent(authorizationHeader)) {
       token = authorizationHeader.substring(TOKEN_TYPE.length());
-      email = tokenService.getSubjetFromAccessToken(token);
+      email = tokenService.getSubjcetFromAccessToken(token);
     }
 
     if (isEmailNotInContext(email)) {

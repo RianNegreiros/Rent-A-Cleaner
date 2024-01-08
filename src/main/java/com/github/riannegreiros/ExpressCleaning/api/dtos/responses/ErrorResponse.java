@@ -7,17 +7,17 @@ public class ErrorResponse {
 
   private LocalDateTime timestamp;
 
-  private String mensagem;
+  private String message;
 
   private String path;
 
   public ErrorResponse() {
   }
 
-  public ErrorResponse(Integer status, LocalDateTime timestamp, String mensagem, String path) {
+  public ErrorResponse(Integer status, LocalDateTime timestamp, String message, String path) {
     this.status = status;
     this.timestamp = timestamp;
-    this.mensagem = mensagem;
+    this.message = message;
     this.path = path;
   }
 
@@ -37,12 +37,12 @@ public class ErrorResponse {
     this.timestamp = timestamp;
   }
 
-  public String getMensagem() {
-    return mensagem;
+  public String getMessage() {
+    return message;
   }
 
-  public void setMensagem(String mensagem) {
-    this.mensagem = mensagem;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   public String getPath() {
@@ -60,7 +60,7 @@ public class ErrorResponse {
   public static class ErrorResponseBuilder {
     private Integer status;
     private LocalDateTime timestamp;
-    private String mensagem;
+    private String message;
     private String path;
 
     private ErrorResponseBuilder() {
@@ -76,8 +76,8 @@ public class ErrorResponse {
       return this;
     }
 
-    public ErrorResponseBuilder mensagem(String mensagem) {
-      this.mensagem = mensagem;
+    public ErrorResponseBuilder message(String message) {
+      this.message = message;
       return this;
     }
 
@@ -90,7 +90,7 @@ public class ErrorResponse {
       ErrorResponse errorResponse = new ErrorResponse();
       errorResponse.setStatus(status);
       errorResponse.setTimestamp(timestamp);
-      errorResponse.setMensagem(mensagem);
+      errorResponse.setMessage(message);
       errorResponse.setPath(path);
       return errorResponse;
     }

@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
@@ -49,8 +50,7 @@ public class SecurityConfig {
                                 .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
                                                 .anyRequest()
                                                 .permitAll())
-                                .csrf(csrfCustomizer -> csrfCustomizer
-                                                .disable())
+                                .csrf(AbstractHttpConfigurer::disable)
                                 .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
@@ -81,7 +81,7 @@ public class SecurityConfig {
                                                 .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
                                                 .logoutSuccessUrl("/admin/login"))
                                 .rememberMe(rememberMeCustomizer -> rememberMeCustomizer
-                                                .rememberMeParameter("remenber-me")
+                                                .rememberMeParameter("remember-me")
                                                 .tokenValiditySeconds(rememberMeValiditySeconds)
                                                 .key(rememberMeKey))
                                 .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 public class UserEditForm {
   @NotNull
   @Size(min = 3, max = 255)
-  private String fullname;
+  private String fullName;
 
   @NotNull
   @Size(min = 3, max = 255)
@@ -17,18 +17,18 @@ public class UserEditForm {
   public UserEditForm() {
   }
 
-  public UserEditForm(@NotNull @Size(min = 3, max = 255) String fullname,
+  public UserEditForm(@NotNull @Size(min = 3, max = 255) String fullName,
       @NotNull @Size(min = 3, max = 255) @Email String email) {
-    this.fullname = fullname;
+    this.fullName = fullName;
     this.email = email;
   }
 
-  public String getFullname() {
-    return fullname;
+  public String getFullName() {
+    return fullName;
   }
 
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
   public String getEmail() {

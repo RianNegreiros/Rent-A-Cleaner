@@ -15,9 +15,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   Optional<User> findByEmail(String email);
 
-  Page<User> findByServedCitiesIbgeCode(String codigoIbge, Pageable pageable);
+  Page<User> findByServedCitiesIbgeCode(String ibgeCode, Pageable pageable);
 
-  Boolean existsByServedCitiesIbgeCode(String codigoIbge);
+  Boolean existsByServedCitiesIbgeCode(String ibgeCode);
 
   @Query("SELECT count(*) > 0 FROM User u WHERE u.email = :email and (:id is null or u.id != :id)")
   Boolean isEmailRegistered(String email, Long id);

@@ -15,7 +15,7 @@ public class CityServed {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "codigo_ibge", nullable = false)
+  @Column(name = "ibge_code", nullable = false)
   private String ibgeCode;
 
   @Column(nullable = false)

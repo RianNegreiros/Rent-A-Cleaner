@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 public class UserRegisterForm implements IConfirmPassword {
   @NotNull
   @Size(min = 3, max = 255)
-  private String fullname;
+  private String fullName;
 
   @NotNull
   @Size(min = 3, max = 255)
@@ -28,21 +28,21 @@ public class UserRegisterForm implements IConfirmPassword {
   public UserRegisterForm() {
   }
 
-  public UserRegisterForm(@NotNull @Size(min = 3, max = 255) String fullname,
+  public UserRegisterForm(@NotNull @Size(min = 3, max = 255) String fullName,
       @NotNull @Size(min = 3, max = 255) @Email String email, @NotNull @NotEmpty String password,
       @NotNull @NotEmpty String confirmPassword) {
-    this.fullname = fullname;
+    this.fullName = fullName;
     this.email = email;
     this.password = password;
     this.confirmPassword = confirmPassword;
   }
 
-  public String getFullname() {
-    return fullname;
+  public String getFullName() {
+    return fullName;
   }
 
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
   public String getEmail() {

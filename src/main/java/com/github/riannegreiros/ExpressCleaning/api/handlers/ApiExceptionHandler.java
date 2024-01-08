@@ -17,15 +17,15 @@ import jakarta.servlet.http.HttpServletRequest;
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(AddressServiceException.class)
-  public ResponseEntity<Object> handleEnderecoServiceException(
+  public ResponseEntity<Object> handleAddressServiceException(
       AddressServiceException exception, HttpServletRequest request) {
-    var errorReponse = ErrorResponse.builder()
+    var errorResponse = ErrorResponse.builder()
         .status(400)
         .timestamp(LocalDateTime.now())
-        .mensagem(exception.getLocalizedMessage())
+        .message(exception.getLocalizedMessage())
         .path(request.getRequestURI())
         .build();
 
-    return ResponseEntity.badRequest().body(errorReponse);
+    return ResponseEntity.badRequest().body(errorResponse);
   }
 }

@@ -36,5 +36,4 @@ public class HousekeeperLocalityPagedResponse {
   public void setNumHousekeepers(Long numHousekeepers) {
     this.numHousekeepers = numHousekeepers;
   }
-
 }
