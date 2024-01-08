@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.services;
 
+import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiHousekeeperMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.AvailabilityResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperLocalityPagedResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.HousekeeperMapper;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.UserRepository;
 import com.github.riannegreiros.ExpressCleaning.core.services.checkaddress.adapters.AddressService;
@@ -19,7 +19,7 @@ public class HousekeeperService {
   private UserRepository repository;
 
   @Autowired
-  private HousekeeperMapper mapper;
+  private ApiHousekeeperMapper mapper;
 
   @Autowired
   private AddressService addressService;

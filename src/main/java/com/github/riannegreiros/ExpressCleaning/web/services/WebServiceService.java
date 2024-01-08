@@ -1,24 +1,23 @@
 package com.github.riannegreiros.ExpressCleaning.web.services;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.ServiceModelNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.ServiceModel;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.ServiceRepository;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.ServiceForm;
-import com.github.riannegreiros.ExpressCleaning.web.mappers.ServiceMapper;
+import com.github.riannegreiros.ExpressCleaning.web.mappers.WebServiceMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public class ServiceService {
+public class WebServiceService {
 
   @Autowired
   private ServiceRepository repository;
 
   @Autowired
-  private ServiceMapper mapper;
+  private WebServiceMapper mapper;
 
   public List<ServiceModel> getAll() {
     return repository.findAll();

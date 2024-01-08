@@ -18,16 +18,16 @@ import com.github.riannegreiros.ExpressCleaning.web.dtos.ChangePasswordForm;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.UserEditForm;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.UserRegisterForm;
 import com.github.riannegreiros.ExpressCleaning.web.interfaces.IConfirmPassword;
-import com.github.riannegreiros.ExpressCleaning.web.mappers.UserMapper;
+import com.github.riannegreiros.ExpressCleaning.web.mappers.WebUserMapper;
 
 @Service
-public class UserService {
+public class WebUserService {
 
   @Autowired
   private UserRepository repository;
 
   @Autowired
-  private UserMapper mapper;
+  private WebUserMapper mapper;
 
   @Autowired
   private UserValidator validator;

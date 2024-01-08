@@ -18,7 +18,7 @@ import com.github.riannegreiros.ExpressCleaning.web.dtos.ChangePasswordForm;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.FlashMessage;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.UserEditForm;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.UserRegisterForm;
-import com.github.riannegreiros.ExpressCleaning.web.services.UserService;
+import com.github.riannegreiros.ExpressCleaning.web.services.WebUserService;
 
 import jakarta.validation.Valid;
 
@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 public class UserController {
 
   @Autowired
-  private UserService service;
+  private WebUserService service;
 
   @GetMapping
   public ModelAndView getAll() {

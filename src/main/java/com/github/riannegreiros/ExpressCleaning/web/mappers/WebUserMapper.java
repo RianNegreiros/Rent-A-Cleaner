@@ -8,9 +8,9 @@ import com.github.riannegreiros.ExpressCleaning.web.dtos.UserEditForm;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.UserRegisterForm;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface WebUserMapper {
 
-  UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+  WebUserMapper INSTANCE = Mappers.getMapper(WebUserMapper.class);
 
   User toModel(UserRegisterForm form);
 

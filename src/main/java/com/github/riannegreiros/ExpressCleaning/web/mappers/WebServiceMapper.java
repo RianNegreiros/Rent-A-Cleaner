@@ -7,9 +7,9 @@ import com.github.riannegreiros.ExpressCleaning.core.models.ServiceModel;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.ServiceForm;
 
 @Mapper(componentModel = "spring")
-public interface ServiceMapper {
+public interface WebServiceMapper {
 
-  ServiceMapper INSTANCE = Mappers.getMapper(ServiceMapper.class);
+  WebServiceMapper INSTANCE = Mappers.getMapper(WebServiceMapper.class);
 
   ServiceModel toModel(ServiceForm form);
 

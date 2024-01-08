@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.riannegreiros.ExpressCleaning.web.dtos.FlashMessage;
 import com.github.riannegreiros.ExpressCleaning.web.dtos.ServiceForm;
-import com.github.riannegreiros.ExpressCleaning.web.services.ServiceService;
+import com.github.riannegreiros.ExpressCleaning.web.services.WebServiceService;
 
 import jakarta.validation.Valid;
 
@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 public class ServiceController {
 
   @Autowired
-  private ServiceService service;
+  private WebServiceService service;
 
   @GetMapping
   public ModelAndView getAll() {
