@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.config;
 
+import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -17,18 +18,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
-import com.github.riannegreiros.ExpressCleaning.core.filters.AccessTokenRequestFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-        @Autowired
-        private AccessTokenRequestFilter accessTokenRequestFilter;
 
         @Autowired
         private AuthenticationEntryPoint authenticationEntryPoint;
@@ -53,7 +48,6 @@ public class SecurityConfig {
                                 .csrf(AbstractHttpConfigurer::disable)
                                 .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
                                 .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
                                                 .authenticationEntryPoint(authenticationEntryPoint)
                                                 .accessDeniedHandler(accessDeniedHandler))
