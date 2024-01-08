@@ -12,7 +12,7 @@ import com.github.riannegreiros.ExpressCleaning.api.services.HousekeeperService;
 
 @RestController
 @RequestMapping("/api/housekeepers")
-public class HousekeeperController {
+public class ApiHousekeeperController {
 
   @Autowired
   private HousekeeperService service;

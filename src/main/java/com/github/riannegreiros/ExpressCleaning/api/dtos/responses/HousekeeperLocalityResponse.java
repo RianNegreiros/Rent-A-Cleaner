@@ -1,5 +1,9 @@
 package com.github.riannegreiros.ExpressCleaning.api.dtos.responses;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class HousekeeperLocalityResponse {
   private String fullName;
 
