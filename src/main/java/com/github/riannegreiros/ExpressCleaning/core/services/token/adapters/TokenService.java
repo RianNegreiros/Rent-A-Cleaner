@@ -4,7 +4,7 @@ public interface TokenService {
 
     String generateAccessToken(String subject);
 
-    String getSubjectDoAccessToken(String accessToken);
+    String getSubjectFromAccessToken(String accessToken);
 
     String generateRefreshToken(String subject);
 
