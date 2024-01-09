@@ -6,6 +6,7 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.TokenResponse
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserRegisterResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiUserMapper;
+import com.github.riannegreiros.ExpressCleaning.core.publishers.NewUserPublisher;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.PasswordsDoNotMatchException;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.UserRepository;
@@ -42,6 +43,9 @@ public class ApiUserService {
     @Autowired
     private SecurityUtils securityUtils;
 
+    @Autowired
+    private NewUserPublisher newUserPublisher;
+
     public UserResponse register(UserRequest request) {
         validatePasswordConfirmation(request);
 
@@ -61,6 +65,7 @@ public class ApiUserService {
         }
 
         var registeredUser = repository.save(userToRegister);
+        newUserPublisher.publish(registeredUser);
 
         var response = mapper.toRegisterResponse(registeredUser);
         var tokenResponse = gerarTokenResponse(response);

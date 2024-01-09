@@ -46,6 +46,10 @@ public class EmailParams {
         return props;
     }
 
+    public void setProps(Map<String, Object> props) {
+        this.props = props;
+    }
+
     public static class Builder {
         private String destination;
         private String subject;
