@@ -7,6 +7,8 @@ spring.datasource.password=<database password>
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.show-sql=true
 
+spring.flyway.locations=classpath:db/migration/mysql
+
 # Thymeleaf
 spring.thymeleaf.cache=false
 
