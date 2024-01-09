@@ -115,11 +115,11 @@ public class UserRequest {
         this.cpf = cpf;
     }
 
-    public LocalDate getbirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setbirth(LocalDate birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
