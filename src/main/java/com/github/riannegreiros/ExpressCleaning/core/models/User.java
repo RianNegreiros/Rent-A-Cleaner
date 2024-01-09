@@ -1,22 +1,10 @@
 package com.github.riannegreiros.ExpressCleaning.core.models;
 
+import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
-
-import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -106,11 +94,11 @@ public class User {
     this.id = id;
   }
 
-  public String getFullname() {
+  public String getFullName() {
     return fullName;
   }
 
-  public void setFullname(String fullName) {
+  public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
@@ -200,5 +188,13 @@ public class User {
 
   public void setCitiesServeds(List<CityServed> citiesServeds) {
     this.citiesServeds = citiesServeds;
+  }
+
+  public Boolean isHousekeeper() {
+    return userType.equals(UserType.HOUSEKEEPER);
+  }
+
+  public Boolean isClient() {
+    return userType.equals(UserType.CLIENT);
   }
 }

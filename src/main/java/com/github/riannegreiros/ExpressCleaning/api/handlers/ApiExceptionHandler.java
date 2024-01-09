@@ -1,20 +1,29 @@
 package com.github.riannegreiros.ExpressCleaning.api.handlers;
 
-import java.time.LocalDateTime;
-
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.ErrorResponse;
+import com.github.riannegreiros.ExpressCleaning.core.services.checkaddress.exceptions.AddressServiceException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.ErrorResponse;
-import com.github.riannegreiros.ExpressCleaning.core.services.checkaddress.exceptions.AddressServiceException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice(annotations = RestController.class)
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+  private final SnakeCaseStrategy camelCaseToSnakeCase = new SnakeCaseStrategy();
 
   @ExceptionHandler(AddressServiceException.class)
   public ResponseEntity<Object> handleAddressServiceException(
@@ -27,5 +36,31 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         .build();
 
     return ResponseEntity.badRequest().body(errorResponse);
+  }
+
+  @Override
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(
+          MethodArgumentNotValidException exception,
+          HttpHeaders headers,
+          HttpStatusCode status,
+          WebRequest request
+  ) {
+    var body = new HashMap<String, List<String>>();
+
+    exception.getBindingResult().getFieldErrors()
+            .forEach(fieldError -> {
+              var field = camelCaseToSnakeCase.translate(fieldError.getField());
+
+              if (!body.containsKey(field)) {
+                var fieldErrors = new ArrayList<String>();
+                fieldErrors.add(fieldError.getDefaultMessage());
+
+                body.put(field, fieldErrors);
+              } else {
+                body.get(field).add(fieldError.getDefaultMessage());
+              }
+            });
+
+    return ResponseEntity.badRequest().body(body);
   }
 }
