@@ -66,12 +66,12 @@ public class LocalStorageService implements StorageService {
             Files.createDirectories(pastaUpload);
         }
 
-        var photo = gerarModelPhoto(file);
+        var photo = genarateModelPhoto(file);
         Files.copy(file.getInputStream(), pastaUpload.resolve(photo.getFilename()));
         return photoRepository.save(photo);
     }
 
-    private Photo gerarModelPhoto(MultipartFile file) throws IOException {
+    private Photo genarateModelPhoto(MultipartFile file) throws IOException {
         var photo = new Photo();
         var filename = generateNewFilename(Objects.requireNonNull(file.getOriginalFilename()));
         var url = linkTo(methodOn(ApiStorageController.class).getPhoto(filename)).toString();
