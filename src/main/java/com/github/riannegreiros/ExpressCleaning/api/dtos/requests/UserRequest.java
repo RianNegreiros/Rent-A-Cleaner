@@ -39,7 +39,7 @@ public class UserRequest {
     @Past
     @Age(min = 18, max = 100)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate birthDate;
+    private LocalDate birth;
 
     @NotNull
     @Size(min = 11, max = 11)
@@ -54,14 +54,14 @@ public class UserRequest {
     public UserRequest() {
     }
 
-    public UserRequest(String fullName, String email, String password, String passwordConfirmation, Integer userType, String cpf, LocalDate birthDate, String telephone, String pixKey, MultipartFile documentPhoto) {
+    public UserRequest(String fullName, String email, String password, String passwordConfirmation, Integer userType, String cpf, LocalDate birth, String telephone, String pixKey, MultipartFile documentPhoto) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.passwordConfirmation = passwordConfirmation;
         this.userType = userType;
         this.cpf = cpf;
-        this.birthDate = birthDate;
+        this.birth = birth;
         this.telephone = telephone;
         this.pixKey = pixKey;
         DocumentPhoto = documentPhoto;
@@ -115,12 +115,12 @@ public class UserRequest {
         this.cpf = cpf;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public LocalDate getbirth() {
+        return birth;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setbirth(LocalDate birth) {
+        this.birth = birth;
     }
 
     public String getTelephone() {

@@ -1,10 +1,10 @@
 package com.github.riannegreiros.ExpressCleaning.api.mappers;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UserRequest;
+import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserRegisterResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
-import com.github.riannegreiros.ExpressCleaning.web.dtos.UserRegisterForm;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -26,7 +26,7 @@ public interface ApiUserMapper {
 
     @Mapping(target = "userType", source = "userType.id")
     @Mapping(target = "userPhoto", source = "userPhoto.url")
-    UserRegisterForm toRegisterResponse(User model);
+    UserRegisterResponse toRegisterResponse(User model);
 
     default UserType integerToUserType(Integer value) {
         return Stream.of(UserType.values())

@@ -26,7 +26,7 @@ public class User {
   private Long id;
 
   @Column(nullable = false)
-  private String fullname;
+  private String fullName;
 
   @Column(nullable = false, unique = true)
   private String email;
@@ -107,11 +107,11 @@ public class User {
   }
 
   public String getFullname() {
-    return fullname;
+    return fullName;
   }
 
-  public void setFullname(String fullname) {
-    this.fullname = fullname;
+  public void setFullname(String fullName) {
+    this.fullName = fullName;
   }
 
   public String getEmail() {
