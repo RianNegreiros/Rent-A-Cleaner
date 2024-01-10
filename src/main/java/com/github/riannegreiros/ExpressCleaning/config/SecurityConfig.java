@@ -1,6 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.config;
 
 import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
+import com.github.riannegreiros.ExpressCleaning.core.filters.AccessTokenRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,12 +19,16 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+
+        @Autowired
+        private AccessTokenRequestFilter accessTokenRequestFilter;
 
         @Autowired
         private AuthenticationEntryPoint authenticationEntryPoint;
@@ -40,18 +45,28 @@ public class SecurityConfig {
         @Bean
         @Order(1)
         public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
-                http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
-                                .requestMatchers("/api/**", "/auth/**"))
-                                .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
-                                                .anyRequest()
-                                                .permitAll())
-                                .csrf(AbstractHttpConfigurer::disable)
-                                .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer
-                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
-                                                .authenticationEntryPoint(authenticationEntryPoint)
-                                                .accessDeniedHandler(accessDeniedHandler))
-                                .cors(Customizer.withDefaults());
+                http.securityMatchers(requestMatcherCustomizer ->
+                                requestMatcherCustomizer
+                                        .requestMatchers("/api/**", "/auth/**")
+                        )
+                        .authorizeHttpRequests(authorizeRequestsCustomizer ->
+                                authorizeRequestsCustomizer
+                                        .anyRequest()
+                                        .permitAll()
+                        )
+                        .csrf(AbstractHttpConfigurer::disable
+                        )
+                        .sessionManagement(sessionManagementCustomizer ->
+                                sessionManagementCustomizer
+                                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        )
+                        .addFilterBefore(accessTokenRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                        .exceptionHandling(exceptionHandlingCustomizer ->
+                                exceptionHandlingCustomizer
+                                        .authenticationEntryPoint(authenticationEntryPoint)
+                                        .accessDeniedHandler(accessDeniedHandler)
+                        )
+                        .cors(Customizer.withDefaults());
 
                 return http.build();
         }
@@ -59,27 +74,38 @@ public class SecurityConfig {
         @Bean
         @Order(2)
         public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
-                http.securityMatchers(requestMatcherCustomizer -> requestMatcherCustomizer
-                                .requestMatchers("/admin/**"))
-                                .authorizeHttpRequests(authorizeRequestsCustomizer -> authorizeRequestsCustomizer
-                                                .requestMatchers("/admin/reset-password/**").permitAll()
-                                                .anyRequest()
-                                                .hasAnyAuthority(UserType.ADMIN.name()))
-                                .formLogin(formLoginCustomizer -> formLoginCustomizer
-                                                .loginPage("/admin/login")
-                                                .usernameParameter("email")
-                                                .passwordParameter("password")
-                                                .defaultSuccessUrl("/admin/services")
-                                                .permitAll())
-                                .logout(logoutCustomizer -> logoutCustomizer
-                                                .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
-                                                .logoutSuccessUrl("/admin/login"))
-                                .rememberMe(rememberMeCustomizer -> rememberMeCustomizer
-                                                .rememberMeParameter("remember-me")
-                                                .tokenValiditySeconds(rememberMeValiditySeconds)
-                                                .key(rememberMeKey))
-                                .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer
-                                                .accessDeniedPage("/admin/login"));
+                http.securityMatchers(requestMatcherCustomizer ->
+                                requestMatcherCustomizer
+                                        .requestMatchers("/admin/**")
+                        )
+                        .authorizeHttpRequests(authorizeRequestsCustomizer ->
+                                authorizeRequestsCustomizer
+                                        .requestMatchers("/admin/reset-password/**").permitAll()
+                                        .anyRequest()
+                                        .hasAnyAuthority(UserType.ADMIN.name())
+                        )
+                        .formLogin(formLoginCustomizer ->
+                                formLoginCustomizer
+                                        .loginPage("/admin/login")
+                                        .usernameParameter("email")
+                                        .passwordParameter("password")
+                                        .defaultSuccessUrl("/admin/services")
+                                        .permitAll()
+                        )
+                        .logout(logoutCustomizer ->
+                                logoutCustomizer
+                                        .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout", "GET"))
+                                        .logoutSuccessUrl("/admin/login")
+                        )
+                        .rememberMe(rememberMeCustomizer ->
+                                rememberMeCustomizer
+                                        .rememberMeParameter("remember-me")
+                                        .tokenValiditySeconds(rememberMeValiditySeconds)
+                                        .key(rememberMeKey)
+                        )
+                        .exceptionHandling(exceptionHandlingCustomizer ->
+                                exceptionHandlingCustomizer
+                                        .accessDeniedPage("/admin/login"));
 
                 return http.build();
         }
@@ -87,11 +113,12 @@ public class SecurityConfig {
         @Bean
         public WebSecurityCustomizer webSecurityCustomizer() {
                 return web -> web.ignoring()
-                                .requestMatchers("/webjars/**", "/img/**");
+                        .requestMatchers("/webjars/**", "/img/**");
         }
 
         @Bean
         public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
                 return configuration.getAuthenticationManager();
         }
+
 }

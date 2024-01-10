@@ -20,10 +20,10 @@
               <div class="row">
                 <div class="col">
                   <div class="form-group">
-                    <label for="fullname">Full Name</label>
-                    <input type="text" class="form-control" th:field="*{fullname}">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" th:field="*{fullName}">
                     <ul>
-                      <li class="text-danger" th:each="error : ${#fields.errors('fullname')}" th:text="${error}">
+                      <li class="text-danger" th:each="error : ${#fields.errors('fullName')}" th:text="${error}">
                       </li>
                     </ul>
                   </div>
