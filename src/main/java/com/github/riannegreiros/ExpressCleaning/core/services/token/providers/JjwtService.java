@@ -34,7 +34,7 @@ public class JjwtService implements TokenService {
     }
 
     @Override
-    public String getSubjectDoAccessToken(String accessToken) {
+    public String getSubjectFromAccessToken(String accessToken) {
         var claims = getClaims(accessToken, accessKey);
 
         return claims.getSubject();
@@ -82,5 +82,4 @@ public class JjwtService implements TokenService {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 }
