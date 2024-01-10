@@ -1,7 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HateoasResponse;
-import com.github.riannegreiros.ExpressCleaning.web.controllers.AuthController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Controller
 @RequestMapping("/api")
-public class HomeController {
+public class ApiHomeController {
 
     @GetMapping
     public HateoasResponse home() {
