@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @JsonNaming(SnakeCaseStrategy.class)
 public class UserRegisterResponse extends UserResponse {
@@ -51,5 +52,18 @@ public class UserRegisterResponse extends UserResponse {
 
     public void setToken(TokenResponse token) {
         this.token = token;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserRegisterResponse that = (UserRegisterResponse) o;
+        return Objects.equals(token, that.token);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(token);
     }
 }

@@ -96,5 +96,4 @@ public class AccessTokenRequestFilter extends OncePerRequestFilter {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
-
 }

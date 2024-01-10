@@ -43,7 +43,7 @@ public class ApiAuthService {
         var token = refreshRequest.getRefresh();
         tokenBlackListService.verifyToken(token);
 
-        var email = tokenService.getSubjectFromAccessToken(token);
+        var email = tokenService.getSubjectFromRefreshToken(token);
 
         userDetailsService.loadUserByUsername(email);
 
