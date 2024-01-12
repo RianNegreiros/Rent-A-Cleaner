@@ -51,7 +51,7 @@ public class User {
 
   @ManyToMany
   @JoinTable(name = "cities_served_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "city_served_id"))
-  private List<CityServed> citiesServeds;
+  private List<CityServed> citiesServed;
 
   public User() {
   }
@@ -182,12 +182,12 @@ public class User {
     this.userPhoto = userPhoto;
   }
 
-  public List<CityServed> getCitiesServeds() {
-    return citiesServeds;
+  public List<CityServed> getCitiesServed() {
+    return citiesServed;
   }
 
-  public void setCitiesServeds(List<CityServed> citiesServeds) {
-    this.citiesServeds = citiesServeds;
+  public void setCitiesServed(List<CityServed> citiesServed) {
+    this.citiesServed = citiesServed;
   }
 
   public Boolean isHousekeeper() {

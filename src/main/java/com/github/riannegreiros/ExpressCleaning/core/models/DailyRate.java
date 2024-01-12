@@ -98,7 +98,7 @@ public class DailyRate extends Auditable {
     )
     private List<User> candidates;
 
-    @OneToMany(mappedBy = "daily_rate")
+    @OneToMany(mappedBy = "dailyRate")
     private List<Payment> payments;
 
     public DailyRate() {
