@@ -22,8 +22,9 @@ import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @Service
-@Profile("dev")
+@Profile({"dev", "docker"})
 public class LocalStorageService implements StorageService {
 
     private final Path pastaUpload = Paths.get("uploads");

@@ -34,3 +34,4 @@ build/
 
 ### Sensitive data ###
 application-dev.properties
+application-dckr.properties

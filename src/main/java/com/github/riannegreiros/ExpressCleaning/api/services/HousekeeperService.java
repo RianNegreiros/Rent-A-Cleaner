@@ -34,7 +34,7 @@ public class HousekeeperService {
     var pageSize = 6;
     var pageable = PageRequest.of(numPage, pageSize, sort);
 
-    var result = repository.findByServedCitiesIbgeCode(ibgeCode, pageable);
+    var result = repository.findByCitiesServedIbgeCode(ibgeCode, pageable);
     var housekeepers = result.getContent()
         .stream()
         .map(mapper::toHousekeeperLocalityResponse)
@@ -46,7 +46,7 @@ public class HousekeeperService {
   public AvailabilityResponse verifyAvailabilityByZipCode(String zipCode) {
     var ibgeCode = getIbgeCodeByZipCode(zipCode);
 
-    var availability = repository.existsByServedCitiesIbgeCode(ibgeCode);
+    var availability = repository.existsByCitiesServedIbgeCode(ibgeCode);
 
     return new AvailabilityResponse(availability);
   }
