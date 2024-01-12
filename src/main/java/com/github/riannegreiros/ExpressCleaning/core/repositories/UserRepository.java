@@ -17,9 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByPixKey(String pixKey);
 
-    Page<User> findByServedCitiesIbgeCode(String ibgeCode, Pageable pageable);
+    Page<User> findByCitiesServedIbgeCode(String ibgeCode, Pageable pageable);
 
-    Boolean existsByServedCitiesIbgeCode(String ibgeCode);
+    Boolean existsByCitiesServedIbgeCode(String ibgeCode);
 
     @Query("SELECT count(*) > 0 FROM User u WHERE u.email = :email and (:id is null or u.id != :id)")
     Boolean isEmailRegistered(String email, Long id);

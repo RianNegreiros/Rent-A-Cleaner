@@ -1,6 +1,15 @@
-version: '3'
+version: "3.9"
 
 services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+    environment:
+      - SPRING_PROFILE=docker
+
   mysql:
     image: mysql:latest
     environment:

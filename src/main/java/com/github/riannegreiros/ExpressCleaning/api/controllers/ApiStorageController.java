@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/uploads")
-@Profile("dev")
+@Profile({"dev", "docker"})
 public class ApiStorageController {
 
     @Autowired
