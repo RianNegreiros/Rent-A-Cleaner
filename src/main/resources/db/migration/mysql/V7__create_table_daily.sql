@@ -1,4 +1,4 @@
-CREATE TABLE `daily` (
+CREATE TABLE IF NOT EXISTS `daily` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,

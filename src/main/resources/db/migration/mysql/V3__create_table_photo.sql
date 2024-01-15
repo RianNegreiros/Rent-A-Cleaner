@@ -1,4 +1,4 @@
-CREATE TABLE `photo` (
+CREATE TABLE IF NOT EXISTS `photo` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `content_length` bigint NOT NULL,
   `content_type` varchar(255) NOT NULL,

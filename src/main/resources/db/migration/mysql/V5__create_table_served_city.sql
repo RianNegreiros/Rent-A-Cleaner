@@ -1,4 +1,4 @@
-CREATE TABLE `city_served` (
+CREATE TABLE IF NOT EXISTS `city_served` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `city` varchar(255) NOT NULL,
   `ibge_code` varchar(255) NOT NULL,
