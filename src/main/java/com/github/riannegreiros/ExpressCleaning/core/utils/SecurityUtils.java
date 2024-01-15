@@ -3,9 +3,9 @@ package com.github.riannegreiros.ExpressCleaning.core.utils;
 import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.DailyRateNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.UserNotFoundException;
-import com.github.riannegreiros.ExpressCleaning.core.models.DailyRate;
+import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
-import com.github.riannegreiros.ExpressCleaning.core.repositories.DailyRateRepository;
+import com.github.riannegreiros.ExpressCleaning.core.repositories.DailyRepository;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +19,7 @@ public class SecurityUtils {
     private UserRepository userRepository;
 
     @Autowired
-    private DailyRateRepository dailyRateRepository;
+    private DailyRepository dailyRateRepository;
 
     public Authentication getAuthentication() {
         return SecurityContextHolder.getContext().getAuthentication();
@@ -65,7 +65,7 @@ public class SecurityUtils {
         return isClient || isHousekeeper;
     }
 
-    private DailyRate getHousekeeperById(Long id) {
+    private Daily getHousekeeperById(Long id) {
         var message = String.format("Daily with id %d not found", id);
         return dailyRateRepository.findById(id)
                 .orElseThrow(() -> new DailyRateNotFoundException(message));

@@ -23,8 +23,8 @@ public class Payment extends Auditable {
     private String transactionId;
 
     @ManyToOne
-    @JoinColumn(name = "daily_rate_id", nullable = false)
-    private DailyRate dailyRate;
+    @JoinColumn(name = "daily_id", nullable = false)
+    private Daily daily;
 
     public boolean isAccept() {
         return status.equals(PaymentStatus.ACCEPTED);
@@ -33,12 +33,12 @@ public class Payment extends Auditable {
     public Payment() {
     }
 
-    public Payment(Long id, PaymentStatus status, BigDecimal valor, String transactionId, DailyRate dailyRate) {
+    public Payment(Long id, PaymentStatus status, BigDecimal valor, String transactionId, Daily daily) {
         this.id = id;
         this.status = status;
         this.valor = valor;
         this.transactionId = transactionId;
-        this.dailyRate = dailyRate;
+        this.daily = daily;
     }
 
     public Long getId() {
@@ -73,12 +73,12 @@ public class Payment extends Auditable {
         this.transactionId = transactionId;
     }
 
-    public DailyRate getDailyRate() {
-        return dailyRate;
+    public Daily getDailyRate() {
+        return daily;
     }
 
-    public void setDailyRate(DailyRate dailyRate) {
-        this.dailyRate = dailyRate;
+    public void setDailyRate(Daily daily) {
+        this.daily = daily;
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Payment extends Auditable {
         private PaymentStatus status;
         private BigDecimal valor;
         private String transactionId;
-        private DailyRate dailyRate;
+        private Daily daily;
 
         private PaymentBuilder() {
         }
@@ -135,8 +135,8 @@ public class Payment extends Auditable {
             return this;
         }
 
-        public PaymentBuilder dailyRate(DailyRate dailyRate) {
-            this.dailyRate = dailyRate;
+        public PaymentBuilder dailyRate(Daily daily) {
+            this.daily = daily;
             return this;
         }
 
@@ -146,7 +146,7 @@ public class Payment extends Auditable {
             payment.setStatus(status);
             payment.setValor(valor);
             payment.setTransactionId(transactionId);
-            payment.setDailyRate(dailyRate);
+            payment.setDailyRate(daily);
             return payment;
         }
     }
