@@ -21,7 +21,7 @@ public abstract class ApiDailyMapper {
     public abstract Daily toModel(DailyRequest request);
 
     @Mapping(target = "status", source = "status.id")
-    @Mapping(target = "nameService", source = "service.name")
+    @Mapping(target = "serviceName", source = "service.name")
     @Mapping(target = "service", source = "service.id")
     public abstract DailyResponse toResponse(Daily model);
 

@@ -1,13 +1,19 @@
 package com.github.riannegreiros.ExpressCleaning.api.dtos.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @JsonNaming(SnakeCaseStrategy.class)
 public class DailyResponse {
+    private Long id;
+    private Integer status;
+    private String cancellationReason;
+    private String serviceName;
     private LocalDateTime attendanceDate;
     private Integer attendanceTime;
     private BigDecimal price;
@@ -35,7 +41,11 @@ public class DailyResponse {
     public DailyResponse() {
     }
 
-    public DailyResponse(LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse housekeeper) {
+    public DailyResponse(Long id, Integer status, String cancellationReason, String serviceName, LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse housekeeper) {
+        this.id = id;
+        this.status = status;
+        this.cancellationReason = cancellationReason;
+        this.serviceName = serviceName;
         this.attendanceDate = attendanceDate;
         this.attendanceTime = attendanceTime;
         this.price = price;
@@ -59,6 +69,38 @@ public class DailyResponse {
         this.updatedAt = updatedAt;
         this.client = client;
         this.housekeeper = housekeeper;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getCancellationReason() {
+        return cancellationReason;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
     public LocalDateTime getAttendanceDate() {
@@ -243,5 +285,25 @@ public class DailyResponse {
 
     public void setHousekeeper(UserDailyResponse housekeeper) {
         this.housekeeper = housekeeper;
+    }
+
+    @JsonIgnore
+    public Boolean isNoPayment() {
+        return status.equals(DailyStatus.NO_PAYMENT.getId());
+    }
+
+    @JsonIgnore
+    public Boolean isConfirmed() {
+        return status.equals(DailyStatus.CONFIRMED.getId());
+    }
+
+    @JsonIgnore
+    public Boolean isCompleted() {
+        return status.equals(DailyStatus.COMPLETED.getId());
+    }
+
+    @JsonIgnore
+    public boolean isPaid() {
+        return status.equals(DailyStatus.PAID.getId());
     }
 }
