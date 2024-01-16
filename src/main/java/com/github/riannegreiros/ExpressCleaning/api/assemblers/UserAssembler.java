@@ -20,6 +20,11 @@ public class UserAssembler implements Assembler<UserResponse> {
 
             resource.addLinks(cadastrarDiariaLink);
         }
+            var listDailyLink = linkTo(methodOn(ApiDailyController.class).listByLoggedUser())
+                    .withRel("list_daily")
+                    .withType("GET");
+
+            resource.addLinks(listDailyLink);
     }
 
     @Override
