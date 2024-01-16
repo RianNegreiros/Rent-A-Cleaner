@@ -1,15 +1,11 @@
 package com.github.riannegreiros.ExpressCleaning.core.models;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
 @Entity
+@Table(name = "city_served")
 public class CityServed {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

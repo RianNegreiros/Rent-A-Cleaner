@@ -1,4 +1,4 @@
-CREATE TABLE `service` (
+CREATE TABLE IF NOT EXISTS `service` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `backyard_hours` int NOT NULL,
   `backyard_value` decimal(38,2) NOT NULL,

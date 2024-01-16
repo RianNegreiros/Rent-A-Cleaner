@@ -1,6 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.core.models;
 
-import com.github.riannegreiros.ExpressCleaning.core.enums.DailyRateStatus;
+import com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class DailyRate extends Auditable {
+public class Daily extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +22,7 @@ public class DailyRate extends Auditable {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private DailyRateStatus status;
+    private DailyStatus status;
 
     @Column(nullable = false)
     private BigDecimal price;
@@ -60,8 +60,8 @@ public class DailyRate extends Auditable {
     @Column(name = "living_room_num", nullable = false)
     private Integer livingRoomNum;
 
-    @Column(name = "kitchens_num", nullable = false)
-    private Integer kitchensNum;
+    @Column(name = "kitchen_num", nullable = false)
+    private Integer kitchenNum;
 
     @Column(name = "bathroom_num", nullable = false)
     private Integer bathroomNum;
@@ -92,19 +92,19 @@ public class DailyRate extends Auditable {
 
     @ManyToMany
     @JoinTable(
-            name = "daily_rate_candidate",
-            joinColumns = @JoinColumn(name = "daily_rate_id"),
+            name = "daily_candidate",
+            joinColumns = @JoinColumn(name = "daily_id"),
             inverseJoinColumns = @JoinColumn(name = "candidate_id")
     )
     private List<User> candidates;
 
-    @OneToMany(mappedBy = "dailyRate")
+    @OneToMany(mappedBy = "daily")
     private List<Payment> payments;
 
-    public DailyRate() {
+    public Daily() {
     }
 
-    public DailyRate(Long id, LocalDateTime attendanceDate, Integer attendanceTime, DailyRateStatus status, BigDecimal price, BigDecimal commissionValue, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchensNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, String cancellationReason, User client, User housekeeper, ServiceModel service, List<User> candidates, List<Payment> payments) {
+    public Daily(Long id, LocalDateTime attendanceDate, Integer attendanceTime, DailyStatus status, BigDecimal price, BigDecimal commissionValue, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, String cancellationReason, User client, User housekeeper, ServiceModel service, List<User> candidates, List<Payment> payments) {
         this.id = id;
         this.attendanceDate = attendanceDate;
         this.attendanceTime = attendanceTime;
@@ -121,7 +121,7 @@ public class DailyRate extends Auditable {
         this.ibgeCode = ibgeCode;
         this.bedroomNum = bedroomNum;
         this.livingRoomNum = livingRoomNum;
-        this.kitchensNum = kitchensNum;
+        this.kitchenNum = kitchenNum;
         this.bathroomNum = bathroomNum;
         this.backyardNum = backyardNum;
         this.otherNum = otherNum;
@@ -158,11 +158,11 @@ public class DailyRate extends Auditable {
         this.attendanceTime = attendanceTime;
     }
 
-    public DailyRateStatus getStatus() {
+    public DailyStatus getStatus() {
         return status;
     }
 
-    public void setStatus(DailyRateStatus status) {
+    public void setStatus(DailyStatus status) {
         this.status = status;
     }
 
@@ -262,12 +262,12 @@ public class DailyRate extends Auditable {
         this.livingRoomNum = livingRoomNum;
     }
 
-    public Integer getKitchensNum() {
-        return kitchensNum;
+    public Integer getkitchenNum() {
+        return kitchenNum;
     }
 
-    public void setKitchensNum(Integer kitchensNum) {
-        this.kitchensNum = kitchensNum;
+    public void setkitchenNum(Integer kitchenNum) {
+        this.kitchenNum = kitchenNum;
     }
 
     public Integer getBathroomNum() {
@@ -354,8 +354,8 @@ public class DailyRate extends Auditable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DailyRate dailyRate = (DailyRate) o;
-        return Objects.equals(id, dailyRate.id);
+        Daily daily = (Daily) o;
+        return Objects.equals(id, daily.id);
     }
 
     @Override
@@ -371,18 +371,18 @@ public class DailyRate extends Auditable {
     }
 
     public Boolean isWithoutPayment() {
-        return status.equals(DailyRateStatus.NO_PAYMENT);
+        return status.equals(DailyStatus.NO_PAYMENT);
     }
 
     public Boolean isPaid() {
-        return status.equals(DailyRateStatus.PAID);
+        return status.equals(DailyStatus.PAID);
     }
 
     public Boolean isConfirmed() {
-        return status.equals(DailyRateStatus.CONFIRMED);
+        return status.equals(DailyStatus.CONFIRMED);
     }
 
     public Boolean isCompleted() {
-        return status.equals(DailyRateStatus.COMPLETED);
+        return status.equals(DailyStatus.COMPLETED);
     }
 }

@@ -34,4 +34,4 @@ build/
 
 ### Sensitive data ###
 application-dev.properties
-application-dckr.properties
+application-docker.properties

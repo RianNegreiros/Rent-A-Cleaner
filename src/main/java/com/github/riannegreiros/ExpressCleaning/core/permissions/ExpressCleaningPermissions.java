@@ -28,8 +28,8 @@ public @interface ExpressCleaningPermissions {
     @Target(ElementType.METHOD)
     public @interface isClientFromDailyRate {}
 
-    @PreAuthorize("hasAnyAuthority('CLIENT', 'HOUSEKEEPER') and @securityUtils.isClientOrHousekeeperFromDailyRate(#id)")
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'HOUSEKEEPER') and @securityUtils.isClientOrHousekeeperFromDaily(#id)")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
-    public @interface isClientOrHousekeeperFromDailyRate {}
+    public @interface isClientOrHousekeeperFromDaily {}
 }

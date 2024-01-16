@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
+import com.github.riannegreiros.ExpressCleaning.api.assemblers.UserAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UserRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
@@ -18,11 +19,17 @@ public class ApiUserController {
     @Autowired
     private ApiUserService service;
 
+    @Autowired
+    private UserAssembler assembler;
+
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public UserResponse register(@ModelAttribute @Valid UserRequest request) {
+        var response =  service.register(request);
 
-        return service.register(request);
+        assembler.addLinks(response);
+
+        return response;
     }
 
     @PostMapping("/photo")

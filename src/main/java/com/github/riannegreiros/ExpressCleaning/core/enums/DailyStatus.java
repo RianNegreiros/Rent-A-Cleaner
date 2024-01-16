@@ -1,6 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.core.enums;
 
-public enum DailyRateStatus {
+public enum DailyStatus {
 
     NO_PAYMENT(1, "Awaiting payment"),
     PAID(2, "Paid"),
@@ -14,7 +14,7 @@ public enum DailyRateStatus {
 
     private String description;
 
-    DailyRateStatus(Integer id, String description) {
+    DailyStatus(Integer id, String description) {
         this.id = id;
         this.description = description;
     }

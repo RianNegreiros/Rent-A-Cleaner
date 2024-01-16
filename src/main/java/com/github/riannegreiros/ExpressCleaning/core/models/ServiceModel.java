@@ -21,7 +21,7 @@ public class ServiceModel {
   private Integer numHours;
 
   @Column(name = "percentage_commission", nullable = false)
-  private Integer percentageCommission;
+  private BigDecimal percentageCommission;
 
   @Column(name = "bedroom_hours", nullable = false)
   private Integer bedroomHours;
@@ -65,7 +65,7 @@ public class ServiceModel {
   public ServiceModel() {
   }
 
-  public ServiceModel(Long id, String name, BigDecimal minValue, Integer numHours, Integer percentageCommission,
+  public ServiceModel(Long id, String name, BigDecimal minValue, Integer numHours, BigDecimal percentageCommission,
       Integer bedroomHours, BigDecimal bedroomValue, Integer livingRoomHours, BigDecimal livingRoomValue,
       Integer bathroomHours, BigDecimal bathroomValue, Integer kitchenHours, BigDecimal kitchenValue,
       Integer backyardHours, BigDecimal backyardValue, Integer othersHours, BigDecimal othersValue, Integer position) {
@@ -121,11 +121,11 @@ public class ServiceModel {
     this.numHours = numHours;
   }
 
-  public Integer getPercentageCommission() {
+  public BigDecimal getPercentageCommission() {
     return percentageCommission;
   }
 
-  public void setPercentageCommission(Integer percentageCommission) {
+  public void setPercentageCommission(BigDecimal percentageCommission) {
     this.percentageCommission = percentageCommission;
   }
 
