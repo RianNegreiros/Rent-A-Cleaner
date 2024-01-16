@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
+import com.github.riannegreiros.ExpressCleaning.api.assemblers.UserAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.ApiMeService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
@@ -14,10 +15,17 @@ public class ApiMeController {
     @Autowired
     private ApiMeService service;
 
+    @Autowired
+    private UserAssembler assembler;
+
     @ExpressCleaningPermissions.isHousekeeperOrClient
     @GetMapping
     public UserResponse me() {
 
-        return service.getLoggedUser();
+        var response = service.getLoggedUser();
+
+        assembler.addLinks(response);
+
+        return response;
     }
 }
