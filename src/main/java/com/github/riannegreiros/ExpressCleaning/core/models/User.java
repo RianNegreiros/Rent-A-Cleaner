@@ -53,7 +53,28 @@ public class User {
   @JoinTable(name = "cities_served_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "city_served_id"))
   private List<CityServed> citiesServed;
 
+  @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JoinColumn(name = "address_id", nullable = true)
+  private HousekeeperAddress address;
+
   public User() {
+  }
+
+  public User(Long id, String fullName, String email, String password, UserType userType, String cpf, LocalDate birth, String telephone, Double reputation, String pixKey, Photo documentPhoto, Photo userPhoto, List<CityServed> citiesServed, HousekeeperAddress address) {
+    this.id = id;
+    this.fullName = fullName;
+    this.email = email;
+    this.password = password;
+    this.userType = userType;
+    this.cpf = cpf;
+    this.birth = birth;
+    this.telephone = telephone;
+    this.reputation = reputation;
+    this.pixKey = pixKey;
+    this.documentPhoto = documentPhoto;
+    this.userPhoto = userPhoto;
+    this.citiesServed = citiesServed;
+    this.address = address;
   }
 
   @Override
@@ -188,6 +209,14 @@ public class User {
 
   public void setCitiesServed(List<CityServed> citiesServed) {
     this.citiesServed = citiesServed;
+  }
+
+  public HousekeeperAddress getAddress() {
+    return address;
+  }
+
+  public void setAddress(HousekeeperAddress address) {
+    this.address = address;
   }
 
   public Boolean isHousekeeper() {
