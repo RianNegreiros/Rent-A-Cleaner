@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
+import com.github.riannegreiros.ExpressCleaning.api.assemblers.DailyAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.DailyRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.ApiDailyService;
@@ -17,6 +18,9 @@ public class ApiDailyController {
     @Autowired
     private ApiDailyService service;
 
+    @Autowired
+    private DailyAssembler assembler;
+
     @ExpressCleaningPermissions.isClient
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -28,14 +32,21 @@ public class ApiDailyController {
     @ExpressCleaningPermissions.isHousekeeperOrClient
     @GetMapping
     public List<DailyResponse> listByLoggedUser() {
+        var response = service.listByLoggedUser();
 
-        return service.listByLoggedUser();
+        assembler.addLinks(response);
+
+        return response;
     }
 
     @ExpressCleaningPermissions.isClientOrHousekeeperFromDaily
     @GetMapping("/{id}")
     public DailyResponse findById(@PathVariable Long id) {
 
-        return service.findById(id);
+        var response = service.findById(id);
+
+        assembler.addLinks(response);
+
+        return response;
     }
 }

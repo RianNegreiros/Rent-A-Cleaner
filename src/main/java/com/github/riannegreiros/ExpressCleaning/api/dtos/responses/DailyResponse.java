@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @JsonNaming(SnakeCaseStrategy.class)
-public class DailyResponse {
+public class DailyResponse extends HateoasResponse {
     private Long id;
     private Integer status;
     private String cancellationReason;
