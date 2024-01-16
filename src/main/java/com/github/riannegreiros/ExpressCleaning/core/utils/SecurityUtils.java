@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.core.utils;
 
 import com.github.riannegreiros.ExpressCleaning.core.enums.UserType;
-import com.github.riannegreiros.ExpressCleaning.core.exceptions.DailyRateNotFoundException;
+import com.github.riannegreiros.ExpressCleaning.core.exceptions.DailyNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.UserNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
@@ -65,9 +65,9 @@ public class SecurityUtils {
         return isClient || isHousekeeper;
     }
 
-    private Daily getHousekeeperById(Long id) { 
+    private Daily getHousekeeperById(Long id) {
         var message = String.format("Daily with id %d not found", id);
         return dailyRateRepository.findById(id)
-                .orElseThrow(() -> new DailyRateNotFoundException(message));
+                .orElseThrow(() -> new DailyNotFoundException(message));
     }
 }
