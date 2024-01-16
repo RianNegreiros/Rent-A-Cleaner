@@ -1,5 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.assemblers;
 
+import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyController;
 import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyPaymentController;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
@@ -27,6 +28,12 @@ public class DailyAssembler implements Assembler<DailyResponse> {
 
             resource.addLinks(pagarDailyLink);
         }
+
+        var selfLink = linkTo(methodOn(ApiDailyController.class).findById(id))
+                .withSelfRel()
+                .withType("GET");
+
+        resource.addLinks(selfLink);
     }
 
     @Override
