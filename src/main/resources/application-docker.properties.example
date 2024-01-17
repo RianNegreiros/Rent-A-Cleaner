@@ -29,6 +29,8 @@ spring.mail.username=<SMTP server username>
 spring.mail.password=<SMTP server password>
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
+backend.host=http://app:8080
+frontend.host=http://localhost:3000
 
 # Google
 googleMatrix.apiKey=<Google Matrix API key>
