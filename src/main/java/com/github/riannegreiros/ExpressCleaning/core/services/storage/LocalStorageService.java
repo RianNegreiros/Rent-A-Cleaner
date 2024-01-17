@@ -87,5 +87,4 @@ public class LocalStorageService implements StorageService {
         var ext = filenameOriginal.split("\\.")[1];
         return UUID.randomUUID().toString() + "." + ext;
     }
-
 }

@@ -1,7 +1,9 @@
 package com.github.riannegreiros.ExpressCleaning.core.models;
 
+import com.github.riannegreiros.ExpressCleaning.core.listeners.PhotoEntityListener;
 import jakarta.persistence.*;
 
+@EntityListeners(PhotoEntityListener.class)
 @Entity
 public class Photo {
 
