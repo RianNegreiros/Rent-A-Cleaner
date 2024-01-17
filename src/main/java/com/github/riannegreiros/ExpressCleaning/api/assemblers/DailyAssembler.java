@@ -1,9 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.assemblers;
 
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiConfirmPresenceController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyPaymentController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiRatingController;
+import com.github.riannegreiros.ExpressCleaning.api.controllers.*;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.RatingRepository;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
@@ -51,6 +48,13 @@ public class DailyAssembler implements Assembler<DailyResponse> {
             resource.addLinks(ratingLink);
         }
 
+        if (isAptForCancellation(resource)) {
+            var cancelDailyLink = linkTo(methodOn(ApiDailyCancellationController.class).cancel(id, null))
+                    .withRel("cancel_daily")
+                    .withType("PATCH");
+            resource.addLinks(cancelDailyLink);
+        }
+
         var selfLink = linkTo(methodOn(ApiDailyController.class).findById(id))
                 .withSelfRel()
                 .withType("GET");
@@ -77,5 +81,10 @@ public class DailyAssembler implements Assembler<DailyResponse> {
     private boolean isAptForRating(DailyResponse resource) {
         return resource.isCompleted()
                 && !ratingRepository.existsByReviewerAndDailyId(securityUtils.getLoggedUser(), resource.getId());
+    }
+
+    private boolean isAptForCancellation(DailyResponse resource) {
+        return (resource.isPaid() || resource.isConfirmed())
+                && resource.getAttendanceDate().isAfter(LocalDateTime.now());
     }
 }
