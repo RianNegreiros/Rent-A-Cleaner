@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 public class RatingResponse {
     private String description;
 
-    private Double grade;
+    private Double rate;
 
     private String reviewerName;
 
@@ -16,9 +16,9 @@ public class RatingResponse {
     public RatingResponse() {
     }
 
-    public RatingResponse(String description, Double grade, String reviewerName, String reviewerPhoto) {
+    public RatingResponse(String description, Double rate, String reviewerName, String reviewerPhoto) {
         this.description = description;
-        this.grade = grade;
+        this.rate = rate;
         this.reviewerName = reviewerName;
         this.reviewerPhoto = reviewerPhoto;
     }
@@ -31,12 +31,12 @@ public class RatingResponse {
         this.description = description;
     }
 
-    public Double getGrade() {
-        return grade;
+    public Double getRate() {
+        return rate;
     }
 
-    public void setGrade(Double grade) {
-        this.grade = grade;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     public String getReviewerName() {
@@ -91,7 +91,7 @@ public class RatingResponse {
         public RatingResponse build() {
             RatingResponse ratingResponse = new RatingResponse();
             ratingResponse.setDescription(description);
-            ratingResponse.setGrade(grade);
+            ratingResponse.setRate(grade);
             ratingResponse.setReviewerName(reviewerName);
             ratingResponse.setReviewerPhoto(reviewerPhoto);
             return ratingResponse;
