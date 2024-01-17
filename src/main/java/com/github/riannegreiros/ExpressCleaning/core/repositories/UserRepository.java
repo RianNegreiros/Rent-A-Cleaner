@@ -65,4 +65,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 .map(userFound -> !userFound.getId().equals(user.getId()))
                 .orElse(false);
     }
+
+    boolean existsByEmail(String email);
 }

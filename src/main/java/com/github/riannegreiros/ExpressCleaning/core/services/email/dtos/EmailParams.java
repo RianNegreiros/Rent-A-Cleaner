@@ -56,25 +56,28 @@ public class EmailParams {
         private String template;
         private Map<String, Object> props;
 
-        public Builder(String destination, String subject, String template) {
+        public Builder destination(String destination) {
             this.destination = destination;
-            this.subject = subject;
-            this.template = template;
+            return this;
         }
 
-        public Builder setProps(Map<String, Object> props) {
+        public Builder subject(String subject) {
+            this.subject = subject;
+            return this;
+        }
+
+        public Builder template(String template) {
+            this.template = template;
+            return this;
+        }
+
+        public Builder props(Map<String, Object> props) {
             this.props = props;
             return this;
         }
 
         public EmailParams build() {
-            EmailParams emailParams = new EmailParams();
-            emailParams.destination = this.destination;
-            emailParams.subject = this.subject;
-            emailParams.template = this.template;
-            emailParams.props = this.props;
-            return emailParams;
+            return new EmailParams(destination, subject, template, props);
         }
     }
-
 }
