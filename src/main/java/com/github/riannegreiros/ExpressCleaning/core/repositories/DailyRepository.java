@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.github.riannegreiros.ExpressCleaning.core.specifications.DailySpecification.*;
+import static org.springframework.data.jpa.domain.Specification.where;
+
 @Repository
 public interface DailyRepository extends
         JpaRepository<Daily, Long>,
@@ -36,4 +39,34 @@ public interface DailyRepository extends
             """
     )
     List<Daily> findOpportunities(List<String> cities, User candidate);
+
+    default List<Daily> getAppropriateForSelectionOfDailyHousekeeper() {
+        return this.findAll(
+                where(
+                        isPaid()
+                                .and(withoutHousekeeper())
+                                .and(withCandidatesNumberEqualsTo(3))
+                ).or(
+                        isPaid()
+                                .and(withoutHousekeeper())
+                                .and(withMore24HoursSinceCreation())
+                                .and(withCandidatesNumberLessThan(3))
+                                .and(withCandidatesNumberBiggerOrEqualsTo(1))
+                )
+        );
+    }
+
+    default List<Daily> getAbleToCancel() {
+        return this.findAll(
+                where(
+                        isPaid()
+                                .and(withFewer24HoursForService())
+                                .and(withoutCandidates())
+                ).or(
+                        isWithoutPayment()
+                                .and(withMore24HoursSinceCreation())
+                                .and(withoutCandidates())
+                )
+        );
+    }
 }
