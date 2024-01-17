@@ -3,7 +3,9 @@ package com.github.riannegreiros.ExpressCleaning.api.assemblers;
 import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiConfirmPresenceController;
 import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyController;
 import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyPaymentController;
+import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiRatingController;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
+import com.github.riannegreiros.ExpressCleaning.core.repositories.RatingRepository;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,9 @@ public class DailyAssembler implements Assembler<DailyResponse> {
 
     @Autowired
     private SecurityUtils securityUtils;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @Override
     public void addLinks(DailyResponse resource) {
@@ -37,6 +42,13 @@ public class DailyAssembler implements Assembler<DailyResponse> {
                     .withType("PATCH");
 
             resource.addLinks(confirmPresenceLink);
+        }
+
+        if (isAptForRating(resource)) {
+            var ratingLink = linkTo(methodOn(ApiRatingController.class).rateDaily(null, id))
+                    .withRel("rate_daily")
+                    .withType("PATCH");
+            resource.addLinks(ratingLink);
         }
 
         var selfLink = linkTo(methodOn(ApiDailyController.class).findById(id))
@@ -62,4 +74,8 @@ public class DailyAssembler implements Assembler<DailyResponse> {
         return resource.getAttendanceDate().isBefore(LocalDateTime.now());
     }
 
+    private boolean isAptForRating(DailyResponse resource) {
+        return resource.isCompleted()
+                && !ratingRepository.existsByReviewerAndDailyId(securityUtils.getLoggedUser(), resource.getId());
+    }
 }

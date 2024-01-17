@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = ApiOpportunityMapper.class)
+@Mapper(componentModel = "spring", uses = ApiUserDailyMapper.class)
 public abstract class ApiOpportunityMapper {
 
     @Autowired

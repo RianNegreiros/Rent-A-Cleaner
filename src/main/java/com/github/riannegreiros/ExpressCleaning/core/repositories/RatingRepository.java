@@ -41,6 +41,8 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     )
     boolean isClientAndHousekeeperRatedDaily(Daily daily);
 
+    boolean existsByReviewerAndDailyId(User rated, Long dailyId);
+
     Page<Rating> findByRated(User rated, Pageable pageable);
 
     default List<Rating> getLastRatings(User rated) {
