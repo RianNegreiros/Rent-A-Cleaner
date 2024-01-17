@@ -1,9 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.assemblers;
 
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiCitiesServedController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiDailyController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiHousekeeperAddressController;
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiOpportunityController;
+import com.github.riannegreiros.ExpressCleaning.api.controllers.*;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import org.springframework.stereotype.Component;
 
@@ -55,7 +52,11 @@ public class UserAssembler implements Assembler<UserResponse> {
                     .withRel("list_daily")
                     .withType("GET");
 
-            resource.addLinks(listDailyLink);
+        var updateUserPhotoLink = linkTo(methodOn(ApiUserController.class).updateUserPhoto(null))
+                .withRel("update_user_photo")
+                .withType("POST");
+
+            resource.addLinks(listDailyLink, updateUserPhotoLink);
     }
 
     @Override
