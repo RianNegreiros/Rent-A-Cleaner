@@ -56,7 +56,11 @@ public class UserAssembler implements Assembler<UserResponse> {
                 .withRel("update_user_photo")
                 .withType("POST");
 
-            resource.addLinks(listDailyLink, updateUserPhotoLink);
+        var updateUserLink = linkTo(methodOn(ApiUserController.class).update(null))
+                .withRel("update_user")
+                .withType("PUT");
+
+            resource.addLinks(listDailyLink, updateUserPhotoLink, updateUserLink);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
 import com.github.riannegreiros.ExpressCleaning.api.assemblers.UserAssembler;
+import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UpdateUserRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UserRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
@@ -30,6 +31,12 @@ public class ApiUserController {
         assembler.addLinks(response);
 
         return response;
+    }
+
+    @PutMapping
+    @ExpressCleaningPermissions.isHousekeeperOrClient
+    public MessageResponse update(@RequestBody @Valid UpdateUserRequest request) {
+        return service.update(request);
     }
 
     @PostMapping("/photo")
