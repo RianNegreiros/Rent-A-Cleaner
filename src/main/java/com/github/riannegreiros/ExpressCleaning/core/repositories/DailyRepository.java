@@ -1,7 +1,9 @@
 package com.github.riannegreiros.ExpressCleaning.core.repositories;
 
+import com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus;
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +21,15 @@ public interface DailyRepository extends
 
     List<Daily> findByClient(User client);
     List<Daily> findByHousekeeper(User housekeeper);
+
+    default List<Daily> findFiltered(String client, List<DailyStatus> status, Sort sort) {
+        return this.findAll(
+                where(
+                        clientFullNameContains(client)
+                                .and(statusIn(status))
+                ), sort
+        );
+    }
 
     @Query(
             """
