@@ -1,4 +1,4 @@
-package com.github.riannegreiros.ExpressCleaning.core.services.storage;
+package com.github.riannegreiros.ExpressCleaning.core.services.storage.providers;
 
 import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiStorageController;
 import com.github.riannegreiros.ExpressCleaning.core.models.Photo;
