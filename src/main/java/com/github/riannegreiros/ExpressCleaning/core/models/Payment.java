@@ -17,7 +17,7 @@ public class Payment extends Auditable {
     private PaymentStatus status;
 
     @Column(nullable = false)
-    private BigDecimal valor;
+    private BigDecimal value;
 
     @Column(name = "transaction_id", nullable = false)
     private String transactionId;
@@ -33,10 +33,10 @@ public class Payment extends Auditable {
     public Payment() {
     }
 
-    public Payment(Long id, PaymentStatus status, BigDecimal valor, String transactionId, Daily daily) {
+    public Payment(Long id, PaymentStatus status, BigDecimal value, String transactionId, Daily daily) {
         this.id = id;
         this.status = status;
-        this.valor = valor;
+        this.value = value;
         this.transactionId = transactionId;
         this.daily = daily;
     }
@@ -57,12 +57,12 @@ public class Payment extends Auditable {
         this.status = status;
     }
 
-    public BigDecimal getValor() {
-        return valor;
+    public BigDecimal getValue() {
+        return value;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     public String getTransactionId() {
@@ -144,7 +144,7 @@ public class Payment extends Auditable {
             Payment payment = new Payment();
             payment.setId(id);
             payment.setStatus(status);
-            payment.setValor(valor);
+            payment.setValue(valor);
             payment.setTransactionId(transactionId);
             payment.setDailyRate(daily);
             return payment;

@@ -103,4 +103,51 @@ public class Photo {
   public String toString() {
     return "Photo [id=" + id + "]";
   }
+
+  public static class Builder {
+    private Long id;
+    private String filename;
+    private Long contentLength;
+    private String contentType;
+    private String url;
+
+    public Builder() {
+    }
+
+    public Builder id(Long id) {
+      this.id = id;
+      return this;
+    }
+
+    public Builder filename(String filename) {
+      this.filename = filename;
+      return this;
+    }
+
+    public Builder contentLength(Long contentLength) {
+      this.contentLength = contentLength;
+      return this;
+    }
+
+    public Builder contentType(String contentType) {
+      this.contentType = contentType;
+      return this;
+    }
+
+    public Builder url(String url) {
+      this.url = url;
+      return this;
+    }
+
+    public Photo build() {
+      Photo photo = new Photo();
+      photo.setId(id);
+      photo.setFilename(filename);
+      photo.setContentLength(contentLength);
+      photo.setContentType(contentType);
+      photo.setUrl(url);
+      return photo;
+    }
+  }
+
 }

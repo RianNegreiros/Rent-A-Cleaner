@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
 import com.github.riannegreiros.ExpressCleaning.core.repositories.PhotoRepository;
-import com.github.riannegreiros.ExpressCleaning.core.services.storage.LocalStorageService;
+import com.github.riannegreiros.ExpressCleaning.core.services.storage.providers.LocalStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
