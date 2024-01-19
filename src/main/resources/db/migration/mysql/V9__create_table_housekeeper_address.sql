@@ -1,4 +1,4 @@
-CREATE TABLE `housekeeper_address` (
+CREATE TABLE `cleaner_address` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `neighborhood` varchar(30) NOT NULL,
   `zip_code` varchar(8) NOT NULL,
@@ -13,4 +13,4 @@ CREATE TABLE `housekeeper_address` (
 ALTER TABLE `user`
   ADD `address_id` bigint DEFAULT NULL,
   ADD KEY (`address_id`),
-  ADD CONSTRAINT FOREIGN KEY (`address_id`) REFERENCES `housekeeper_address` (`id`);
+  ADD CONSTRAINT FOREIGN KEY (`address_id`) REFERENCES `cleaner_address` (`id`);

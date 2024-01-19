@@ -135,7 +135,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 			<version>${hibernate-jpamodelgen.version}</version>
 		</dependency>

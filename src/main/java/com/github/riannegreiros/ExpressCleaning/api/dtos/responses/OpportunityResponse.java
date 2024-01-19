@@ -19,8 +19,8 @@ public class OpportunityResponse extends DailyResponse {
         this.clientRatings = clientRatings;
     }
 
-    public OpportunityResponse(Long id, Integer status, String cancellationReason, String serviceName, LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse housekeeper, List<RatingResponse> clientRatings) {
-        super(id, status, cancellationReason, serviceName, attendanceDate, attendanceTime, price, street, number, neighborhood, complement, city, state, zipCode, ibgeCode, bedroomNum, livingRoomNum, kitchenNum, bathroomNum, backyardNum, otherNum, observations, service, createdAt, updatedAt, client, housekeeper);
+    public OpportunityResponse(Long id, Integer status, String cancellationReason, String serviceName, LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse cleaner, List<RatingResponse> clientRatings) {
+        super(id, status, cancellationReason, serviceName, attendanceDate, attendanceTime, price, street, number, neighborhood, complement, city, state, zipCode, ibgeCode, bedroomNum, livingRoomNum, kitchenNum, bathroomNum, backyardNum, otherNum, observations, service, createdAt, updatedAt, client, cleaner);
         this.clientRatings = clientRatings;
     }
 

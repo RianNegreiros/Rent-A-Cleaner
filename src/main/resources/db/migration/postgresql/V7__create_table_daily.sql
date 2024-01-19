@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS daily (
   commission_value decimal(19,2) NOT NULL,
   price decimal(19,2) NOT NULL,
   client_id bigint NOT NULL,
-  housekeeper_id bigint DEFAULT NULL,
+  cleaner_id bigint DEFAULT NULL,
   service_id bigint NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (service_id) REFERENCES service (id),
-  FOREIGN KEY (housekeeper_id) REFERENCES user (id),
+  FOREIGN KEY (cleaner_id) REFERENCES user (id),
   FOREIGN KEY (client_id) REFERENCES user (id)
 );

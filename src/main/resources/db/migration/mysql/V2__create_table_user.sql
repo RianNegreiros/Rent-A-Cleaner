@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `user_type` enum('ADMIN','CLIENT','HOUSEKEEPER') NOT NULL,
+  `user_type` enum('ADMIN','CLIENT','CLEANER') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY (`email`)
 )

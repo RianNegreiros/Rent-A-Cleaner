@@ -1,6 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.core.services.storage.providers;
 
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiStorageController;
+import com.github.riannegreiros.ExpressCleaning.api.controllers.StorageApiController;
 import com.github.riannegreiros.ExpressCleaning.core.models.Photo;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.PhotoRepository;
 import com.github.riannegreiros.ExpressCleaning.core.services.storage.adapters.StorageService;
@@ -75,7 +75,7 @@ public class LocalStorageService implements StorageService {
     private Photo genarateModelPhoto(MultipartFile file) throws IOException {
         var photo = new Photo();
         var filename = generateNewFilename(Objects.requireNonNull(file.getOriginalFilename()));
-        var url = linkTo(methodOn(ApiStorageController.class).getPhoto(filename)).toString();
+        var url = linkTo(methodOn(StorageApiController.class).getPhoto(filename)).toString();
         photo.setFilename(filename);
         photo.setContentLength(file.getSize());
         photo.setContentType(file.getContentType());

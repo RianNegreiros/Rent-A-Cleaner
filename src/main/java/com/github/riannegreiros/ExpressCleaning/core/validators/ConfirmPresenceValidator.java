@@ -33,13 +33,13 @@ public class ConfirmPresenceValidator {
             throw new ValidationException(message, fieldError);
         }
 
-        validateHousekeeper(daily);
+        validateCleaner(daily);
     }
 
-    private void validateHousekeeper(Daily daily) {
-        if (daily.getHousekeeper() == null) {
-            var message = "The daily rate does not include a selected housekeeper";
-            var fieldError = new FieldError(daily.getClass().getName(), "housekeeper", daily.getHousekeeper(), false, null, null, message);
+    private void validateCleaner(Daily daily) {
+        if (daily.getCleaner() == null) {
+            var message = "The daily rate does not include a selected cleaner";
+            var fieldError = new FieldError(daily.getClass().getName(), "cleaner", daily.getCleaner(), false, null, null, message);
             throw new ValidationException(message, fieldError);
         }
     }

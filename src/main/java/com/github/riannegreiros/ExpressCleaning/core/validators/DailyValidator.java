@@ -102,7 +102,7 @@ public class DailyValidator {
         var ibgeCode = daily.getIbgeCode();
         var availability = userRepository.existsByCitiesServedIbgeCode(ibgeCode);
         if (!availability) {
-            var message = "there are no housekeepers at the zip code provided";
+            var message = "there are no cleaners at the zip code provided";
             var fieldError = new FieldError(daily.getClass().getName(), "cep", daily.getZipCode(), false, null, null, message);
 
             throw new ValidationException(message, fieldError);

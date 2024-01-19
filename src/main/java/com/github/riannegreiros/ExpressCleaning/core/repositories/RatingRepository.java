@@ -39,7 +39,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
                 a.daily = :daily
             """
     )
-    boolean isClientAndHousekeeperRatedDaily(Daily daily);
+    boolean isClientAndCleanerRatedDaily(Daily daily);
 
     boolean existsByReviewerAndDailyId(User rated, Long dailyId);
 

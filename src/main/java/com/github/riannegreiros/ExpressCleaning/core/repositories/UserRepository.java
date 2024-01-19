@@ -31,10 +31,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
                     FROM
                         User u
                     WHERE
-                        u.userType = com.github.riannegreiros.ExpressCleaning.core.enums.UserType.HOUSEKEEPER
+                        u.userType = com.github.riannegreiros.ExpressCleaning.core.enums.UserType.CLEANER
                     """
     )
-    Double getAverageReputationHousekeeper();
+    Double getAverageReputationCleaner();
 
     default Boolean isEmailAlreadyRegistered(User user) {
         if (user.getEmail() == null) {

@@ -36,12 +36,12 @@ public class DailyResponse extends HateoasResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private UserDailyResponse client;
-    private UserDailyResponse housekeeper;
+    private UserDailyResponse cleaner;
 
     public DailyResponse() {
     }
 
-    public DailyResponse(Long id, Integer status, String cancellationReason, String serviceName, LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse housekeeper) {
+    public DailyResponse(Long id, Integer status, String cancellationReason, String serviceName, LocalDateTime attendanceDate, Integer attendanceTime, BigDecimal price, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, Long service, LocalDateTime createdAt, LocalDateTime updatedAt, UserDailyResponse client, UserDailyResponse cleaner) {
         this.id = id;
         this.status = status;
         this.cancellationReason = cancellationReason;
@@ -68,7 +68,7 @@ public class DailyResponse extends HateoasResponse {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.client = client;
-        this.housekeeper = housekeeper;
+        this.cleaner = cleaner;
     }
 
     public Long getId() {
@@ -279,12 +279,12 @@ public class DailyResponse extends HateoasResponse {
         this.client = client;
     }
 
-    public UserDailyResponse getHousekeeper() {
-        return housekeeper;
+    public UserDailyResponse getCleaner() {
+        return cleaner;
     }
 
-    public void setHousekeeper(UserDailyResponse housekeeper) {
-        this.housekeeper = housekeeper;
+    public void setCleaner(UserDailyResponse cleaner) {
+        this.cleaner = cleaner;
     }
 
     @JsonIgnore

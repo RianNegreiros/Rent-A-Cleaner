@@ -26,7 +26,7 @@ public class DailyAssembler implements Assembler<DailyResponse> {
     public void addLinks(DailyResponse resource) {
         var id = resource.getId();
         if (securityUtils.isClient() && resource.isNoPayment()) {
-            var pagarDailyLink = linkTo(methodOn(ApiDailyPaymentController.class).pay(null, id))
+            var pagarDailyLink = linkTo(methodOn(DailyPaymentApiController.class).pay(null, id))
                     .withRel("pay_daily")
                     .withType("POST");
 
@@ -34,7 +34,7 @@ public class DailyAssembler implements Assembler<DailyResponse> {
         }
 
         if (isAptForPresenceConfirmation(resource)) {
-            var confirmPresenceLink = linkTo(methodOn(ApiConfirmPresenceController.class).confirmPresence(id))
+            var confirmPresenceLink = linkTo(methodOn(ConfirmPresenceApiController.class).confirmPresence(id))
                     .withRel("confirm_daily")
                     .withType("PATCH");
 
@@ -42,20 +42,20 @@ public class DailyAssembler implements Assembler<DailyResponse> {
         }
 
         if (isAptForRating(resource)) {
-            var ratingLink = linkTo(methodOn(ApiRatingController.class).rateDaily(null, id))
+            var ratingLink = linkTo(methodOn(RatingApiController.class).rateDaily(null, id))
                     .withRel("rate_daily")
                     .withType("PATCH");
             resource.addLinks(ratingLink);
         }
 
         if (isAptForCancellation(resource)) {
-            var cancelDailyLink = linkTo(methodOn(ApiDailyCancellationController.class).cancel(id, null))
+            var cancelDailyLink = linkTo(methodOn(DailyCancellationApiController.class).cancel(id, null))
                     .withRel("cancel_daily")
                     .withType("PATCH");
             resource.addLinks(cancelDailyLink);
         }
 
-        var selfLink = linkTo(methodOn(ApiDailyController.class).findById(id))
+        var selfLink = linkTo(methodOn(DailyApiController.class).findById(id))
                 .withSelfRel()
                 .withType("GET");
 
@@ -71,7 +71,7 @@ public class DailyAssembler implements Assembler<DailyResponse> {
     private boolean isAptForPresenceConfirmation(DailyResponse resource) {
         return resource.isConfirmed()
                 && isDateAttendedInThePast(resource)
-                && resource.getHousekeeper() != null;
+                && resource.getCleaner() != null;
     }
 
     private boolean isDateAttendedInThePast(DailyResponse resource) {

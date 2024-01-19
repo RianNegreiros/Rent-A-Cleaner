@@ -20,7 +20,7 @@ public interface DailyRepository extends
         JpaSpecificationExecutor<Daily> {
 
     List<Daily> findByClient(User client);
-    List<Daily> findByHousekeeper(User housekeeper);
+    List<Daily> findByCleaner(User cleaner);
 
     default List<Daily> findFiltered(String client, List<DailyStatus> status, Sort sort) {
         return this.findAll(
@@ -40,7 +40,7 @@ public interface DailyRepository extends
             WHERE
                 d.status = com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus.PAID
             AND
-                d.housekeeper IS NULL
+                d.cleaner IS NULL
             AND
                 d.ibgeCode IN :cities
             AND
@@ -51,15 +51,15 @@ public interface DailyRepository extends
     )
     List<Daily> findOpportunities(List<String> cities, User candidate);
 
-    default List<Daily> getAppropriateForSelectionOfDailyHousekeeper() {
+    default List<Daily> getAppropriateForSelectionOfDailyCleaner() {
         return this.findAll(
                 where(
                         isPaid()
-                                .and(withoutHousekeeper())
+                                .and(withoutCleaner())
                                 .and(withCandidatesNumberEqualsTo(3))
                 ).or(
                         isPaid()
-                                .and(withoutHousekeeper())
+                                .and(withoutCleaner())
                                 .and(withMore24HoursSinceCreation())
                                 .and(withCandidatesNumberLessThan(3))
                                 .and(withCandidatesNumberBiggerOrEqualsTo(1))
