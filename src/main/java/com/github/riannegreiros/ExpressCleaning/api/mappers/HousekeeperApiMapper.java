@@ -8,8 +8,8 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperLo
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
 
 @Mapper(componentModel = "spring")
-public interface ApiHousekeeperMapper {
-  ApiHousekeeperMapper INSTANCE = Mappers.getMapper(ApiHousekeeperMapper.class);
+public interface HousekeeperApiMapper {
+  HousekeeperApiMapper INSTANCE = Mappers.getMapper(HousekeeperApiMapper.class);
 
   @Mapping(target = "userPhoto", source = "userPhoto.url")
   HousekeeperLocalityResponse toHousekeeperLocalityResponse(User model);

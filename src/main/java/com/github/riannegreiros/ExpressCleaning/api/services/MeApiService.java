@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiUserMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.UserApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class MeApiService {
 
     @Autowired
-    private ApiUserMapper userMapper;
+    private UserApiMapper userMapper;
 
     @Autowired
     private SecurityUtils securityUtils;

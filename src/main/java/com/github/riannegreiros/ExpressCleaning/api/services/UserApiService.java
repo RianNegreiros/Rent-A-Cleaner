@@ -6,7 +6,7 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageRespon
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.TokenResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserRegisterResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiUserMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.UserApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.WrongPasswordException;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
 import com.github.riannegreiros.ExpressCleaning.core.publishers.NewUserPublisher;
@@ -31,7 +31,7 @@ public class UserApiService {
     private UserRepository repository;
 
     @Autowired
-    private ApiUserMapper mapper;
+    private UserApiMapper mapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

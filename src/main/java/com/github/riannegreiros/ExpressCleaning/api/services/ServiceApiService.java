@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.ServiceResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiServiceMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.ServiceApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.models.ServiceModel;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ServiceApiService {
     private ServiceRepository repository;
 
     @Autowired
-    private ApiServiceMapper mapper;
+    private ServiceApiMapper mapper;
 
     public List<ServiceResponse> getAll() {
         var serviceSort = Sort.sort(ServiceModel.class);

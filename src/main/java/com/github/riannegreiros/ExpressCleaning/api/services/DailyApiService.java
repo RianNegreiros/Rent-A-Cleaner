@@ -2,7 +2,7 @@ package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.DailyRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiDailyMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.DailyApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.DailyNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
@@ -21,7 +21,7 @@ public class DailyApiService {
     private DailyRepository repository;
 
     @Autowired
-    private ApiDailyMapper mapper;
+    private DailyApiMapper mapper;
 
     @Autowired
     private DailyValidator validator;

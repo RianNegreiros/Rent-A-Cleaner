@@ -7,8 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ApiHousekeeperAddressMapper {
-    ApiHousekeeperAddressMapper INSTANCE = Mappers.getMapper(ApiHousekeeperAddressMapper.class);
+public interface HousekeeperAddressApiMapper {
+    HousekeeperAddressApiMapper INSTANCE = Mappers.getMapper(HousekeeperAddressApiMapper.class);
 
     HousekeeperAddress toModel(HousekeeperAddressRequest request);
 

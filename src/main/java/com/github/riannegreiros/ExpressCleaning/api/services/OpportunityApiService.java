@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiDailyMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.DailyApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.models.CityServed;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.DailyRepository;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
@@ -16,7 +16,7 @@ public class OpportunityApiService {
     private DailyRepository repository;
 
     @Autowired
-    private ApiDailyMapper mapper;
+    private DailyApiMapper mapper;
 
     @Autowired
     private SecurityUtils securityUtils;

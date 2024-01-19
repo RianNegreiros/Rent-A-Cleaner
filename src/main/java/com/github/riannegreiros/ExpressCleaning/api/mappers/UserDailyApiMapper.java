@@ -7,9 +7,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ApiUserDailyMapper {
+public interface UserDailyApiMapper {
 
-    ApiUserDailyMapper INSTANCE = Mappers.getMapper(ApiUserDailyMapper.class);
+    UserDailyApiMapper INSTANCE = Mappers.getMapper(UserDailyApiMapper.class);
 
     @Mapping(target = "userType", source = "userType.id")
     @Mapping(target = "userPhoto", source = "userPhoto.url")

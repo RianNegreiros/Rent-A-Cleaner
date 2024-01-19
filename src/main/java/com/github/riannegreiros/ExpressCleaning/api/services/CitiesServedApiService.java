@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.services;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.CitiesServedRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.CityServedResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiCityServedMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.CityServedApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.CityServedNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.CityServed;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.CityServedRepository;
@@ -23,7 +23,7 @@ public class CitiesServedApiService {
     private SecurityUtils securityUtils;
 
     @Autowired
-    private ApiCityServedMapper mapper;
+    private CityServedApiMapper mapper;
 
     @Autowired
     private CityServedRepository repository;

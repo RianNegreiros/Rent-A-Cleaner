@@ -12,9 +12,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.stream.Stream;
 
 @Mapper(componentModel = "spring")
-public interface ApiUserMapper {
+public interface UserApiMapper {
 
-    ApiUserMapper INSTANCE = Mappers.getMapper(ApiUserMapper.class);
+    UserApiMapper INSTANCE = Mappers.getMapper(UserApiMapper.class);
 
     @Mapping(target = "password", source = "password")
     @Mapping(target = "documentPhoto", ignore = true)

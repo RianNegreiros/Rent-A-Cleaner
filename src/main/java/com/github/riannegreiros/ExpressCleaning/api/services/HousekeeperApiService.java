@@ -1,6 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.services;
 
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiHousekeeperMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.HousekeeperApiMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,7 +19,7 @@ public class HousekeeperApiService {
   private UserRepository repository;
 
   @Autowired
-  private ApiHousekeeperMapper mapper;
+  private HousekeeperApiMapper mapper;
 
   @Autowired
   private AddressService addressService;

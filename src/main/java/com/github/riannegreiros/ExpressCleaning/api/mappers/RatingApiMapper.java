@@ -8,8 +8,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ApiRatingMapper {
-    ApiRatingMapper INSTANCE = Mappers.getMapper(ApiRatingMapper.class);
+public interface RatingApiMapper {
+    RatingApiMapper INSTANCE = Mappers.getMapper(RatingApiMapper.class);
 
     Rating toModel(RatingRequest request);
 

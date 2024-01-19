@@ -2,7 +2,7 @@ package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.HousekeeperAddressRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperAddressResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiHousekeeperAddressMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.HousekeeperAddressApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.HousekeeperAddressException;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.UserRepository;
 import com.github.riannegreiros.ExpressCleaning.core.utils.SecurityUtils;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HousekeeperAddressApiService {
     @Autowired
-    private ApiHousekeeperAddressMapper mapper;
+    private HousekeeperAddressApiMapper mapper;
 
     @Autowired
     private UserRepository repository;

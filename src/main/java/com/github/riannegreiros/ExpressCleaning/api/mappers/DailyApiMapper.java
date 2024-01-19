@@ -10,13 +10,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper(componentModel = "spring", uses = ApiUserDailyMapper.class)
-public abstract class ApiDailyMapper {
+@Mapper(componentModel = "spring", uses = UserDailyApiMapper.class)
+public abstract class DailyApiMapper {
 
     @Autowired
     protected ServiceRepository serviceRepository;
 
-    public static final ApiDailyMapper INSTANCE = Mappers.getMapper(ApiDailyMapper.class);
+    public static final DailyApiMapper INSTANCE = Mappers.getMapper(DailyApiMapper.class);
 
     public abstract Daily toModel(DailyRequest request);
 

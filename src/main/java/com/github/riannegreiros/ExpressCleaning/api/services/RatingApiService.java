@@ -2,7 +2,7 @@ package com.github.riannegreiros.ExpressCleaning.api.services;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.RatingRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
-import com.github.riannegreiros.ExpressCleaning.api.mappers.ApiRatingMapper;
+import com.github.riannegreiros.ExpressCleaning.api.mappers.RatingApiMapper;
 import com.github.riannegreiros.ExpressCleaning.core.exceptions.DailyNotFoundException;
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.models.Rating;
@@ -27,7 +27,7 @@ public class RatingApiService {
     private DailyRepository dailyRepository;
 
     @Autowired
-    private ApiRatingMapper mapper;
+    private RatingApiMapper mapper;
 
     @Autowired
     private RatingValidator validator;

@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = ApiUserDailyMapper.class)
-public abstract class ApiOpportunityMapper {
+@Mapper(componentModel = "spring", uses = UserDailyApiMapper.class)
+public abstract class OpportunityApiMapper {
 
     @Autowired
     protected ServiceRepository serviceRepository;
@@ -23,9 +23,9 @@ public abstract class ApiOpportunityMapper {
     protected RatingRepository ratingRepository;
 
     @Autowired
-    protected ApiRatingMapper mapper;
+    protected RatingApiMapper mapper;
 
-    public static final ApiOpportunityMapper INSTANCE = Mappers.getMapper(ApiOpportunityMapper.class);
+    public static final OpportunityApiMapper INSTANCE = Mappers.getMapper(OpportunityApiMapper.class);
 
     @Mapping(target = "status", source = "status.id")
     @Mapping(target = "serviceName", source = "service.name")

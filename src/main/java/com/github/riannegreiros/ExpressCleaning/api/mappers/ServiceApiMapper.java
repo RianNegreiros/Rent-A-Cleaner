@@ -6,8 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface ApiServiceMapper {
-    ApiServiceMapper INSTANCE = Mappers.getMapper(ApiServiceMapper.class);
+public interface ServiceApiMapper {
+    ServiceApiMapper INSTANCE = Mappers.getMapper(ServiceApiMapper.class);
 
     ServiceResponse toResponse(ServiceModel model);
 }
