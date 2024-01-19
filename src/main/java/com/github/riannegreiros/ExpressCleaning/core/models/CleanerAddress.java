@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "housekeeper_address")
-public class HousekeeperAddress {
+@Table(name = "cleaner_address")
+public class CleanerAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +33,10 @@ public class HousekeeperAddress {
     @Column(nullable = false, length = 2)
     private String state;
 
-    public HousekeeperAddress() {
+    public CleanerAddress() {
     }
 
-    public HousekeeperAddress(Long id, String street, String number, String neighborhood, String complement, String zipCode, String city, String state) {
+    public CleanerAddress(Long id, String street, String number, String neighborhood, String complement, String zipCode, String city, String state) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -115,7 +115,7 @@ public class HousekeeperAddress {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HousekeeperAddress that = (HousekeeperAddress) o;
+        CleanerAddress that = (CleanerAddress) o;
         return Objects.equals(id, that.id);
     }
 

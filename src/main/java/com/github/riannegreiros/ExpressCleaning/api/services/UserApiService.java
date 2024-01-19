@@ -64,8 +64,8 @@ public class UserApiService {
         var documentPhoto = storageService.save(request.getDocumentPhoto());
         userToRegister.setDocumentPhoto(documentPhoto);
 
-        if (userToRegister.isHousekeeper()) {
-            var averageReputation = calculateAverageReputationHousekeepers();
+        if (userToRegister.isCleaner()) {
+            var averageReputation = calculateCleanersAverageReputation();
             userToRegister.setReputation(averageReputation);
         }
 
@@ -152,8 +152,8 @@ public class UserApiService {
         return new TokenResponse(token, refresh);
     }
 
-    private Double calculateAverageReputationHousekeepers() {
-        var averageReputation = repository.getAverageReputationHousekeeper();
+    private Double calculateCleanersAverageReputation() {
+        var averageReputation = repository.getAverageReputationCleaner();
         if (averageReputation == null || averageReputation == 0.0) {
             averageReputation = 5.0;
         }

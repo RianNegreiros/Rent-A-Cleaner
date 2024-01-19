@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class HousekeeperAddressRequest {
+public class CleanerAddressRequest {
 
     @NotNull
     @NotEmpty
@@ -42,10 +42,10 @@ public class HousekeeperAddressRequest {
     @Size(min = 2, max = 2)
     private String state;
 
-    public HousekeeperAddressRequest() {
+    public CleanerAddressRequest() {
     }
 
-    public HousekeeperAddressRequest(String street, String number, String neighborhood, String complement, String zipCode, String city, String state) {
+    public CleanerAddressRequest(String street, String number, String neighborhood, String complement, String zipCode, String city, String state) {
         this.street = street;
         this.number = number;
         this.neighborhood = neighborhood;

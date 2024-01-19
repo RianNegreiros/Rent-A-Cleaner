@@ -4,7 +4,7 @@ import com.github.riannegreiros.ExpressCleaning.api.assemblers.DailyAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.DailyRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.DailyApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class DailyApiController {
     @Autowired
     private DailyAssembler assembler;
 
-    @ExpressCleaningPermissions.isClient
+    @RentACleanerPermissions.isClient
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public DailyResponse register(@RequestBody @Valid DailyRequest request) {
@@ -29,7 +29,7 @@ public class DailyApiController {
         return service.register(request);
     }
 
-    @ExpressCleaningPermissions.isHousekeeperOrClient
+    @RentACleanerPermissions.isCleanerOrClient
     @GetMapping
     public List<DailyResponse> listByLoggedUser() {
         var response = service.listByLoggedUser();
@@ -39,7 +39,7 @@ public class DailyApiController {
         return response;
     }
 
-    @ExpressCleaningPermissions.isClientOrHousekeeperFromDaily
+    @RentACleanerPermissions.isClientOrCleanerFromDaily
     @GetMapping("/{id}")
     public DailyResponse findById(@PathVariable Long id) {
 

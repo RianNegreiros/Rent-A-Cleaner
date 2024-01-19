@@ -45,27 +45,27 @@ public class SecurityUtils {
     }
 
     public Boolean isClientFromDaily(Long id) {
-        var housekeeper = getHousekeeperById(id);
+        var cleaner = getCleanerById(id);
         var userLogged = getLoggedUser();
 
         if (!userLogged.isClient()) {
             return false;
         }
 
-        return housekeeper.getClient().equals(userLogged);
+        return cleaner.getClient().equals(userLogged);
     }
 
-    public Boolean isClientOrHousekeeperFromDaily(Long id) {
-        var housekeeper = getHousekeeperById(id);
+    public Boolean isClientOrCleanerFromDaily(Long id) {
+        var cleaner = getCleanerById(id);
         var userLogged = getLoggedUser();
 
-        var isClient = housekeeper.getClient() != null && housekeeper.getClient().equals(userLogged);
-        var isHousekeeper = housekeeper.getHousekeeper() != null && housekeeper.getHousekeeper().equals(userLogged);
+        var isClient = cleaner.getClient() != null && cleaner.getClient().equals(userLogged);
+        var isCleaner = cleaner.getCleaner() != null && cleaner.getCleaner().equals(userLogged);
 
-        return isClient || isHousekeeper;
+        return isClient || isCleaner;
     }
 
-    private Daily getHousekeeperById(Long id) {
+    private Daily getCleanerById(Long id) {
         var message = String.format("Daily with id %d not found", id);
         return dailyRateRepository.findById(id)
                 .orElseThrow(() -> new DailyNotFoundException(message));

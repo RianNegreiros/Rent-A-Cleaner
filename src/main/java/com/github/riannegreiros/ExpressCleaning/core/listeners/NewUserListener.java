@@ -20,7 +20,7 @@ public class NewUserListener {
     public void handleNewUserEvent(NewUserEvent event) {
         var user = event.getUser();
 
-        if (user.isClient() || user.isHousekeeper()) {
+        if (user.isClient() || user.isCleaner()) {
             var emailParams = createEmailParams(user);
         }
     }

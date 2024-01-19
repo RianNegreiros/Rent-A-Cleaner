@@ -47,7 +47,7 @@ public class UserValidator {
       throw new UserRegisteredException(message, fieldError);
     }
 
-    if (user.isHousekeeper() && user.getPixKey() == null) {
+    if (user.isCleaner() && user.getPixKey() == null) {
       var message = "HOUSEKEEPER user must have the pix key";
       var fieldError = new FieldError(user.getClass().getName(), "pixKey", user.getPixKey(), false, null, null, message);
 

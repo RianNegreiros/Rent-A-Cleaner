@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class HousekeeperLocalityResponse {
+public class CleanerLocalityResponse {
   private String fullName;
 
   private Double reputation;
@@ -13,10 +13,10 @@ public class HousekeeperLocalityResponse {
 
   private String city;
 
-  public HousekeeperLocalityResponse() {
+  public CleanerLocalityResponse() {
   }
 
-  public HousekeeperLocalityResponse(String fullName, Double reputation, String userPhoto, String city) {
+  public CleanerLocalityResponse(String fullName, Double reputation, String userPhoto, String city) {
     this.fullName = fullName;
     this.reputation = reputation;
     this.userPhoto = userPhoto;

@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.AvailabilityResponse;
-import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperLocalityPagedResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.HousekeeperApiService;
+import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.CleanerLocalityPagedResponse;
+import com.github.riannegreiros.ExpressCleaning.api.services.CleanerApiService;
 
 @RestController
-@RequestMapping("/api/housekeepers")
-public class HousekeeperApiController {
+@RequestMapping("/api/cleaners")
+public class CleanerApiController {
 
   @Autowired
-  private HousekeeperApiService service;
+  private CleanerApiService service;
 
   @GetMapping("/localities")
-  public HousekeeperLocalityPagedResponse getHousekeepersByZipCode(
+  public CleanerLocalityPagedResponse getCleanersByZipCode(
       @RequestParam(required = false) String zipCode) {
-    return service.getHousekeeperByZipCode(zipCode);
+    return service.getCleanersByZipCode(zipCode);
   }
 
   @GetMapping("/availability")

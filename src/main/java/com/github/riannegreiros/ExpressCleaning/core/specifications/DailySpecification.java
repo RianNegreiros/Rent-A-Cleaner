@@ -44,9 +44,9 @@ public class DailySpecification {
         };
     }
 
-    public static Specification<Daily> withoutHousekeeper() {
+    public static Specification<Daily> withoutCleaner() {
         return (root, query, criteriaBuilder) -> {
-            return criteriaBuilder.isNull(root.get(Daily_.housekeeper));
+            return criteriaBuilder.isNull(root.get(Daily_.cleaner));
         };
     }
 

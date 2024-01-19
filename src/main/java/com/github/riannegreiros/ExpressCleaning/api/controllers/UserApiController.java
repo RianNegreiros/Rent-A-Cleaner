@@ -6,7 +6,7 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UserRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.UserApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,13 +34,13 @@ public class UserApiController {
     }
 
     @PutMapping
-    @ExpressCleaningPermissions.isHousekeeperOrClient
+    @RentACleanerPermissions.isCleanerOrClient
     public MessageResponse update(@RequestBody @Valid UpdateUserRequest request) {
         return service.update(request);
     }
 
     @PostMapping("/photo")
-    @ExpressCleaningPermissions.isHousekeeperOrClient
+    @RentACleanerPermissions.isCleanerOrClient
     public MessageResponse updateUserPhoto(
             @RequestPart("user_photo") MultipartFile userPhoto
     ) {

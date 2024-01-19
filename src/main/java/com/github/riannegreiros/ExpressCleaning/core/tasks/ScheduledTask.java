@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.core.tasks;
 import com.github.riannegreiros.ExpressCleaning.core.enums.DailyStatus;
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.repositories.DailyRepository;
-import com.github.riannegreiros.ExpressCleaning.core.services.housekeeperIndex.adapters.HousekeeperIndexService;
+import com.github.riannegreiros.ExpressCleaning.core.services.cleanerIndex.adapters.CleanerIndexService;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,17 +20,17 @@ public class ScheduledTask {
     private DailyRepository dailyRepository;
 
     @Autowired
-    private HousekeeperIndexService housekeeperIndexService;
+    private CleanerIndexService cleanerIndexService;
 
     @Scheduled(cron = "0 0/5 * * * ?")
     @Transactional(readOnly = false)
-    public void selectHousekeeperFromDaily() {
-        log.info("Selection task for housekeepers begins");
+    public void selectCleanerFromDaily() {
+        log.info("Selection task for cleaners begins");
 
-        var dailyAptForSelection = dailyRepository.getAppropriateForSelectionOfDailyHousekeeper();
-        dailyAptForSelection.forEach(this::selectHousekeeper);
+        var dailyAptForSelection = dailyRepository.getAppropriateForSelectionOfDailyCleaner();
+        dailyAptForSelection.forEach(this::selectCleaner);
 
-        log.info("Housekeeper selection task finalized");
+        log.info("Cleaner selection task finalized");
     }
 
     @Scheduled(cron = "0 3/5 * * * ?")
@@ -44,19 +44,19 @@ public class ScheduledTask {
         log.info("Task of canceling daily without candidates finalized");
     }
 
-    private void selectHousekeeper(Daily daily) {
-        log.info("Selecting the best diarist for id's daily rate " + daily.getId().toString());
-        var bestHousekeeper = housekeeperIndexService.selectBestHousekeeper(daily);
-        daily.setHousekeeper(bestHousekeeper);
+    private void selectCleaner(Daily daily) {
+        log.info("Selecting the best cleaner for id's daily rate " + daily.getId().toString());
+        var bestHousekeeper = cleanerIndexService.selectBestCleaner(daily);
+        daily.setCleaner(bestHousekeeper);
         daily.setStatus(DailyStatus.CONFIRMED);
         dailyRepository.save(daily);
-        log.info("Selected the id housekeeper " + bestHousekeeper.getId().toString());
+        log.info("Selected the id cleaner " + bestHousekeeper.getId().toString());
     }
 
     private void cancelDaily(Daily daily) {
         log.info("Canceling the daily id " + daily.getId());
         if (daily.isPaid()) {
-            log.info("Reimbursing id's daily rate " + daily.getId());
+            log.info("Reimbursing id's daily " + daily.getId());
         }
         daily.setStatus(DailyStatus.CANCELLED);
         dailyRepository.save(daily);

@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.DailyCancellationRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.DailyCancellationApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class DailyCancellationApiController {
     private DailyCancellationApiService service;
 
     @PatchMapping
-    @ExpressCleaningPermissions.isClientOrHousekeeperFromDaily
+    @RentACleanerPermissions.isClientOrCleanerFromDaily
     public MessageResponse cancel(
             @PathVariable Long id,
             @RequestBody @Valid DailyCancellationRequest request

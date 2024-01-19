@@ -51,7 +51,7 @@ public class DailyApiService {
         if (loggedUser.isClient()) {
             dailyRates = repository.findByClient(loggedUser);
         } else {
-            dailyRates = repository.findByHousekeeper(loggedUser);
+            dailyRates = repository.findByCleaner(loggedUser);
         }
 
         return dailyRates.stream()

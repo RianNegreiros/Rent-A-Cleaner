@@ -7,29 +7,29 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-public @interface ExpressCleaningPermissions {
-    @PreAuthorize("hasAnyAuthority('CLIENT', 'HOUSEKEEPER')")
+public @interface RentACleanerPermissions {
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'CLEANER')")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
-    public @interface isHousekeeperOrClient {}
+    public @interface isCleanerOrClient {}
 
     @PreAuthorize("hasAuthority('CLIENT')")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
     public @interface isClient {}
 
-    @PreAuthorize("hasAuthority('HOUSEKEEPER')")
+    @PreAuthorize("hasAuthority('CLEANER')")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
-    public @interface isHousekeeper {}
+    public @interface isCleaner {}
 
     @PreAuthorize("hasAuthority('CLIENT') and @securityUtils.isClientFromDaily(#id)")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
     public @interface isClientFromDaily {}
 
-    @PreAuthorize("hasAnyAuthority('CLIENT', 'HOUSEKEEPER') and @securityUtils.isClientOrHousekeeperFromDaily(#id)")
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'CLEANER') and @securityUtils.isClientOrCleanerFromDaily(#id)")
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
-    public @interface isClientOrHousekeeperFromDaily {}
+    public @interface isClientOrCleanerFromDaily {}
 }

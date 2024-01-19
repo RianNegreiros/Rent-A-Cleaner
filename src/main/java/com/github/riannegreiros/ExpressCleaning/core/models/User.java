@@ -55,12 +55,12 @@ public class User {
 
   @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "address_id", nullable = true)
-  private HousekeeperAddress address;
+  private CleanerAddress address;
 
   public User() {
   }
 
-  public User(Long id, String fullName, String email, String password, UserType userType, String cpf, LocalDate birth, String telephone, Double reputation, String pixKey, Photo documentPhoto, Photo userPhoto, List<CityServed> citiesServed, HousekeeperAddress address) {
+  public User(Long id, String fullName, String email, String password, UserType userType, String cpf, LocalDate birth, String telephone, Double reputation, String pixKey, Photo documentPhoto, Photo userPhoto, List<CityServed> citiesServed, CleanerAddress address) {
     this.id = id;
     this.fullName = fullName;
     this.email = email;
@@ -211,16 +211,16 @@ public class User {
     this.citiesServed = citiesServed;
   }
 
-  public HousekeeperAddress getAddress() {
+  public CleanerAddress getAddress() {
     return address;
   }
 
-  public void setAddress(HousekeeperAddress address) {
+  public void setAddress(CleanerAddress address) {
     this.address = address;
   }
 
-  public Boolean isHousekeeper() {
-    return userType.equals(UserType.HOUSEKEEPER);
+  public Boolean isCleaner() {
+    return userType.equals(UserType.CLEANER);
   }
 
   public Boolean isClient() {

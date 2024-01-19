@@ -50,18 +50,18 @@ public class DailyCancellationApiService {
 
     private void applyPenalty(Daily daily) {
         var loggerUser = securityUtils.getLoggedUser();
-        if (loggerUser.isHousekeeper()) {
-            penalizeHousekeeper(daily);
+        if (loggerUser.isCleaner()) {
+            penalizeCleaner(daily);
             // make total refund
         }
         // else make partial refund
     }
 
-    private void penalizeHousekeeper(Daily daily) {
+    private void penalizeCleaner(Daily daily) {
         var rating = new Rating.Builder()
                 .nota(1.0)
                 .description("Daily penalty canceled")
-                .rated(daily.getHousekeeper())
+                .rated(daily.getCleaner())
                 .visibility(false)
                 .daily(daily)
                 .build();

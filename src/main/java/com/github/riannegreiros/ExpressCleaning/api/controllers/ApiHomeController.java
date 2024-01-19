@@ -21,11 +21,11 @@ public class ApiHomeController {
                 .withRel("address_cep")
                 .expand()
                 .withType("GET");
-        var housekeeperLocalitiesLink = linkTo(methodOn(HousekeeperApiController.class).getHousekeepersByZipCode(null))
-                .withRel("housekeepers_localities")
+        var cleanerLocalitiesLink = linkTo(methodOn(CleanerApiController.class).getCleanersByZipCode(null))
+                .withRel("cleaners_localities")
                 .expand()
                 .withType("GET");
-        var verifyHousekeeperAvailiabilityLInk = linkTo(methodOn(HousekeeperApiController.class).verifyAvailabilityByZipCode(null))
+        var verifyCleanerAvailiabilityLInk = linkTo(methodOn(CleanerApiController.class).verifyAvailabilityByZipCode(null))
                 .withRel("verify_availability_attendance")
                 .expand()
                 .withType("GET");
@@ -49,8 +49,8 @@ public class ApiHomeController {
         response.addLinks(
                 listServicesLink,
                 addressZipCodeLink,
-                housekeeperLocalitiesLink,
-                verifyHousekeeperAvailiabilityLInk,
+                cleanerLocalitiesLink,
+                verifyCleanerAvailiabilityLInk,
                 registerUserLink,
                 loginLink,
                 refreshLink,

@@ -54,7 +54,7 @@ public class RatingApiService {
 
     private User getRated(Rating model) {
         if (model.getReviewer().isClient()) {
-            return model.getDaily().getHousekeeper();
+            return model.getDaily().getCleaner();
         }
         return model.getDaily().getClient();
     }

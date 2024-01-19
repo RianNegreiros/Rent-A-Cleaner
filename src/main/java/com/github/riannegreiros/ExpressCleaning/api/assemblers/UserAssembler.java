@@ -20,11 +20,11 @@ public class UserAssembler implements Assembler<UserResponse> {
 
             resource.addLinks(cadastrarDiariaLink);
         } else {
-            var updateAddressLink = linkTo(methodOn(HousekeeperAddressApiController.class).changeAddress(null))
+            var updateAddressLink = linkTo(methodOn(CleanerAddressApiController.class).changeAddress(null))
                     .withRel("update_address")
                     .withType("PUT");
 
-            var listarAddressLink = linkTo(methodOn(HousekeeperAddressApiController.class).showAddress())
+            var listarAddressLink = linkTo(methodOn(CleanerAddressApiController.class).showAddress())
                     .withRel("list_address")
                     .withType("GET");
 

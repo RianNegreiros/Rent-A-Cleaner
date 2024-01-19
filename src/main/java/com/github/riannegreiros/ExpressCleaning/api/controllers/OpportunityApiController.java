@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.assemblers.OpportunityAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.OpportunityApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ public class OpportunityApiController {
     private OpportunityAssembler assembler;
 
     @GetMapping
-    @ExpressCleaningPermissions.isHousekeeper
+    @RentACleanerPermissions.isCleaner
     public List<DailyResponse> searchOpportunities() {
         var response = service.searchOpportunities();
         assembler.addLinks(response);

@@ -84,7 +84,7 @@ public class Daily extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "housekeeper_id", nullable = true)
-    private User housekeeper;
+    private User cleaner;
 
     @ManyToOne
     @JoinColumn(name = "service_id", nullable = false)
@@ -104,7 +104,7 @@ public class Daily extends Auditable {
     public Daily() {
     }
 
-    public Daily(Long id, LocalDateTime attendanceDate, Integer attendanceTime, DailyStatus status, BigDecimal price, BigDecimal commissionValue, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, String cancellationReason, User client, User housekeeper, ServiceModel service, List<User> candidates, List<Payment> payments) {
+    public Daily(Long id, LocalDateTime attendanceDate, Integer attendanceTime, DailyStatus status, BigDecimal price, BigDecimal commissionValue, String street, String number, String neighborhood, String complement, String city, String state, String zipCode, String ibgeCode, Integer bedroomNum, Integer livingRoomNum, Integer kitchenNum, Integer bathroomNum, Integer backyardNum, Integer otherNum, String observations, String cancellationReason, User client, User cleaner, ServiceModel service, List<User> candidates, List<Payment> payments) {
         this.id = id;
         this.attendanceDate = attendanceDate;
         this.attendanceTime = attendanceTime;
@@ -128,7 +128,7 @@ public class Daily extends Auditable {
         this.observations = observations;
         this.cancellationReason = cancellationReason;
         this.client = client;
-        this.housekeeper = housekeeper;
+        this.cleaner = cleaner;
         this.service = service;
         this.candidates = candidates;
         this.payments = payments;
@@ -318,12 +318,12 @@ public class Daily extends Auditable {
         this.client = client;
     }
 
-    public User getHousekeeper() {
-        return housekeeper;
+    public User getCleaner() {
+        return cleaner;
     }
 
-    public void setHousekeeper(User housekeeper) {
-        this.housekeeper = housekeeper;
+    public void setCleaner(User cleaner) {
+        this.cleaner = cleaner;
     }
 
     public ServiceModel getService() {

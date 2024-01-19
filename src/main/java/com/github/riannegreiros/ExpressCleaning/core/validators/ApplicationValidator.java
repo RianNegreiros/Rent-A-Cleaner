@@ -23,7 +23,7 @@ public class ApplicationValidator {
         var candidate = securityUtils.getLoggedUser();
 
         if (candidate.getAddress() == null) {
-            var message = "Diarist must have registered address";
+            var message = "Cleaner must have registered address";
             var fieldError = new FieldError(daily.getClass().getName(), "candidates", null, false, null, null, message);
             throw new ValidationException(message, fieldError);
         }
@@ -36,7 +36,7 @@ public class ApplicationValidator {
         var candidates = daily.getCandidates();
 
         if (candidates.contains(candidate)) {
-            var message = "Diarist has already applied for this daily rate";
+            var message = "Cleaner has already applied for this daily";
             var fieldError = new FieldError(daily.getClass().getName(), "candidates", null, false, null, null, message);
             throw new ValidationException(message, fieldError);
         }
@@ -76,15 +76,15 @@ public class ApplicationValidator {
             throw new ValidationException(message, fieldError);
         }
 
-        validateDailyHousekeeper(daily);
+        validateDailyCleaner(daily);
     }
 
-    private void validateDailyHousekeeper(Daily daily) {
-        var housekeeper = daily.getHousekeeper();
+    private void validateDailyCleaner(Daily daily) {
+        var cleaner = daily.getCleaner();
 
-        if (housekeeper != null) {
-            var message = "Daily already has a housekeeper";
-            var fieldError = new FieldError(daily.getClass().getName(), "housekeeper", null, false, null, null, message);
+        if (cleaner != null) {
+            var message = "Daily already has a cleaner";
+            var fieldError = new FieldError(daily.getClass().getName(), "cleaner", null, false, null, null, message);
             throw new ValidationException(message, fieldError);
         }
     }

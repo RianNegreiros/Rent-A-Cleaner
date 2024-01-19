@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.core.enums;
 public enum UserType {
   ADMIN(1),
   CLIENT (2),
-  HOUSEKEEPER (3);
+  CLEANER (3);
 
   private Integer id;
 

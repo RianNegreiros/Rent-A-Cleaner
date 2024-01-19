@@ -4,7 +4,7 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.CitiesServedRe
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.CityServedResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.CitiesServedApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class CitiesServedApiController {
     private CitiesServedApiService service;
 
     @GetMapping
-    @ExpressCleaningPermissions.isHousekeeper
+    @RentACleanerPermissions.isCleaner
     public List<CityServedResponse> listCitiesServed() {
         return service.listCitiesServed();
     }
 
     @PutMapping
-    @ExpressCleaningPermissions.isHousekeeper
+    @RentACleanerPermissions.isCleaner
     public MessageResponse updateCitiesServed(@RequestBody @Valid CitiesServedRequest request) {
         return service.updateCitiesServed(request);
     }

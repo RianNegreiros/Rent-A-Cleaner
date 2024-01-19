@@ -71,7 +71,7 @@ public class DailyAssembler implements Assembler<DailyResponse> {
     private boolean isAptForPresenceConfirmation(DailyResponse resource) {
         return resource.isConfirmed()
                 && isDateAttendedInThePast(resource)
-                && resource.getHousekeeper() != null;
+                && resource.getCleaner() != null;
     }
 
     private boolean isDateAttendedInThePast(DailyResponse resource) {

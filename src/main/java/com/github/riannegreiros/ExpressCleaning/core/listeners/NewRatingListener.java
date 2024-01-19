@@ -30,7 +30,7 @@ public class NewRatingListener {
 
     private void updateDailyStatusRated(Rating rating) {
         var daily = rating.getDaily();
-        if (ratingRepository.isClientAndHousekeeperRatedDaily(daily)) {
+        if (ratingRepository.isClientAndCleanerRatedDaily(daily)) {
             daily.setStatus(DailyStatus.REVIEWED);
             dailyRepository.save(daily);
         }

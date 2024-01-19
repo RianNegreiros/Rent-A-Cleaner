@@ -1,23 +1,23 @@
-package com.github.riannegreiros.ExpressCleaning.core.services.housekeeperIndex.providers;
+package com.github.riannegreiros.ExpressCleaning.core.services.cleanerIndex.providers;
 
 import com.github.riannegreiros.ExpressCleaning.core.models.Daily;
 import com.github.riannegreiros.ExpressCleaning.core.models.User;
 import com.github.riannegreiros.ExpressCleaning.core.services.checkdistance.adapters.CheckDistanceService;
 import com.github.riannegreiros.ExpressCleaning.core.services.checkdistance.exceptions.CheckDistanceServiceException;
-import com.github.riannegreiros.ExpressCleaning.core.services.housekeeperIndex.adapters.HousekeeperIndexService;
+import com.github.riannegreiros.ExpressCleaning.core.services.cleanerIndex.adapters.CleanerIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 
 @Service
-public class HousekeeperIndexServiceImpl implements HousekeeperIndexService {
+public class CleanerIndexServiceImpl implements CleanerIndexService {
 
     @Autowired
     private CheckDistanceService checkDistanceService;
 
     @Override
-    public User selectBestHousekeeper(Daily daily) {
+    public User selectBestCleaner(Daily daily) {
         validateDaily(daily);
 
         var destination = daily.getZipCode();

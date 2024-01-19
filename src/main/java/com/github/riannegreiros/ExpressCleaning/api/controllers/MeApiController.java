@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.assemblers.UserAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
 import com.github.riannegreiros.ExpressCleaning.api.services.MeApiService;
-import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
+import com.github.riannegreiros.ExpressCleaning.core.permissions.RentACleanerPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class MeApiController {
     @Autowired
     private UserAssembler assembler;
 
-    @ExpressCleaningPermissions.isHousekeeperOrClient
+    @RentACleanerPermissions.isCleanerOrClient
     @GetMapping
     public UserResponse me() {
 
