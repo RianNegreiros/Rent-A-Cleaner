@@ -15,7 +15,7 @@ import org.springframework.validation.FieldError;
 import java.util.HashMap;
 
 @Service
-public class ApiPasswordResetService {
+public class PasswordResetApiService {
     @Autowired
     private PasswordResetService passwordResetService;
 

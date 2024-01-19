@@ -1,7 +1,7 @@
 package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiApplicationService;
+import com.github.riannegreiros.ExpressCleaning.api.services.DailyApplicationApiService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DailyApplicationApiController {
 
     @Autowired
-    private ApiApplicationService service;
+    private DailyApplicationApiService service;
 
     @PostMapping
     @ExpressCleaningPermissions.isHousekeeper

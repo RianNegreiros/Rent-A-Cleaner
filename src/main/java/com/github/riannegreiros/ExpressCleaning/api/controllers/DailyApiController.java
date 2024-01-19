@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.assemblers.DailyAssembler;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.DailyRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiDailyService;
+import com.github.riannegreiros.ExpressCleaning.api.services.DailyApiService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/daily")
 public class DailyApiController {
     @Autowired
-    private ApiDailyService service;
+    private DailyApiService service;
 
     @Autowired
     private DailyAssembler assembler;

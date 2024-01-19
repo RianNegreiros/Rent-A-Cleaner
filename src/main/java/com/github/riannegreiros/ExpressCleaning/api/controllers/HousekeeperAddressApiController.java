@@ -2,7 +2,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.HousekeeperAddressRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperAddressResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiHousekeeperAddressService;
+import com.github.riannegreiros.ExpressCleaning.api.services.HousekeeperAddressApiService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class HousekeeperAddressApiController {
 
     @Autowired
-    private ApiHousekeeperAddressService service;
+    private HousekeeperAddressApiService service;
 
     @PutMapping
     @ExpressCleaningPermissions.isHousekeeper

@@ -13,7 +13,7 @@ import com.github.riannegreiros.ExpressCleaning.core.repositories.UserRepository
 import com.github.riannegreiros.ExpressCleaning.core.services.checkaddress.adapters.AddressService;
 
 @Service
-public class HousekeeperService {
+public class HousekeeperApiService {
 
   @Autowired
   private UserRepository repository;

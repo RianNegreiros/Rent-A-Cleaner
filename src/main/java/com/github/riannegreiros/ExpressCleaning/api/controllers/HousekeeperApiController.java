@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.AvailabilityResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.HousekeeperLocalityPagedResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.HousekeeperService;
+import com.github.riannegreiros.ExpressCleaning.api.services.HousekeeperApiService;
 
 @RestController
 @RequestMapping("/api/housekeepers")
 public class HousekeeperApiController {
 
   @Autowired
-  private HousekeeperService service;
+  private HousekeeperApiService service;
 
   @GetMapping("/localities")
   public HousekeeperLocalityPagedResponse getHousekeepersByZipCode(

@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.PasswordResetConfirmationRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.PasswordResetRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiPasswordResetService;
+import com.github.riannegreiros.ExpressCleaning.api.services.PasswordResetApiService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/reset-password")
 public class PasswordResetApiController {
     @Autowired
-    private ApiPasswordResetService service;
+    private PasswordResetApiService service;
 
     @PostMapping
     public MessageResponse requestPasswordReset(@RequestBody @Valid PasswordResetRequest request) {

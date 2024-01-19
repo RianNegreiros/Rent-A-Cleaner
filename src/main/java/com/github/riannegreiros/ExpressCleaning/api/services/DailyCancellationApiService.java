@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Service
-public class ApiDailyCancellationService {
+public class DailyCancellationApiService {
     @Autowired
     private DailyRepository dailyRepository;
 

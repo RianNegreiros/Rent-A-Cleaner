@@ -5,7 +5,7 @@ import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UpdateUserRequ
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.UserRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.UserResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiUserService;
+import com.github.riannegreiros.ExpressCleaning.api.services.UserApiService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserApiController {
 
     @Autowired
-    private ApiUserService service;
+    private UserApiService service;
 
     @Autowired
     private UserAssembler assembler;

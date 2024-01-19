@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 @Service
-public class ApiUserService {
+public class UserApiService {
 
     @Autowired
     private UserRepository repository;

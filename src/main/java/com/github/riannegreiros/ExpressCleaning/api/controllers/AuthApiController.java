@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.RefreshRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.TokenRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.TokenResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiAuthService;
+import com.github.riannegreiros.ExpressCleaning.api.services.AuthApiService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthApiController {
 
     @Autowired
-    private ApiAuthService service;
+    private AuthApiService service;
 
     @PostMapping("/token")
     public TokenResponse authenticate(@RequestBody @Valid TokenRequest tokenRequest) {

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class ApiDailyService {
+public class DailyApiService {
     @Autowired
     private DailyRepository repository;
 

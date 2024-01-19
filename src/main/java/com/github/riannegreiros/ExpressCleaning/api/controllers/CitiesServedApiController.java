@@ -3,7 +3,7 @@ package com.github.riannegreiros.ExpressCleaning.api.controllers;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.requests.CitiesServedRequest;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.CityServedResponse;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.MessageResponse;
-import com.github.riannegreiros.ExpressCleaning.api.services.ApiCitiesServedService;
+import com.github.riannegreiros.ExpressCleaning.api.services.CitiesServedApiService;
 import com.github.riannegreiros.ExpressCleaning.core.permissions.ExpressCleaningPermissions;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/users/cities-served")
 public class CitiesServedApiController {
     @Autowired
-    private ApiCitiesServedService service;
+    private CitiesServedApiService service;
 
     @GetMapping
     @ExpressCleaningPermissions.isHousekeeper
