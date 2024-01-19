@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/daily/{id}/cancel")
-public class ApiDailyCancellationController {
+public class DailyCancellationApiController {
     @Autowired
     private ApiDailyCancellationService service;
 

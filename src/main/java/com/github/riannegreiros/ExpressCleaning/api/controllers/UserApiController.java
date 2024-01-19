@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/users")
-public class ApiUserController {
+public class UserApiController {
 
     @Autowired
     private ApiUserService service;

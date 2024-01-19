@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/daily/{id}")
-public class ApiDailyPaymentController {
+public class DailyPaymentApiController {
     @Autowired
     private ApiDailyPaymentService service;
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/daily/{id}/confirm-presence")
-public class ApiConfirmPresenceController {
+public class ConfirmPresenceApiController {
     @Autowired
     private ApiConfirmPresenceService service;
 

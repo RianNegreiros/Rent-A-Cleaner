@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/daily")
-public class ApiDailyController {
+public class DailyApiController {
     @Autowired
     private ApiDailyService service;
 

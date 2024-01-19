@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/opportunities")
-public class ApiOpportunityController {
+public class OpportunityApiController {
 
     @Autowired
     private ApiOpportunityService service;

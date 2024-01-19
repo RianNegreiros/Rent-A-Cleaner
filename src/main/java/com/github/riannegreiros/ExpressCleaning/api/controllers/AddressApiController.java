@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/addresses")
-public class ApiAddressController {
+public class AddressApiController {
 
     @Autowired
     private AddressService service;

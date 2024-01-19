@@ -14,34 +14,34 @@ public class ApiHomeController {
 
     @GetMapping
     public HateoasResponse home() {
-        var listServicesLink = linkTo(methodOn(ApiServiceController.class).getAll())
+        var listServicesLink = linkTo(methodOn(ServiceApiController.class).getAll())
                 .withRel("list_services")
                 .withType("GET");
-        var addressZipCodeLink = linkTo(methodOn(ApiAddressController.class).getAddressByZipCode(null))
+        var addressZipCodeLink = linkTo(methodOn(AddressApiController.class).getAddressByZipCode(null))
                 .withRel("address_cep")
                 .expand()
                 .withType("GET");
-        var housekeeperLocalitiesLink = linkTo(methodOn(ApiHousekeeperController.class).getHousekeepersByZipCode(null))
+        var housekeeperLocalitiesLink = linkTo(methodOn(HousekeeperApiController.class).getHousekeepersByZipCode(null))
                 .withRel("housekeepers_localities")
                 .expand()
                 .withType("GET");
-        var verifyHousekeeperAvailiabilityLInk = linkTo(methodOn(ApiHousekeeperController.class).verifyAvailabilityByZipCode(null))
+        var verifyHousekeeperAvailiabilityLInk = linkTo(methodOn(HousekeeperApiController.class).verifyAvailabilityByZipCode(null))
                 .withRel("verify_availability_attendance")
                 .expand()
                 .withType("GET");
-        var registerUserLink = linkTo(methodOn(ApiUserController.class).register(null))
+        var registerUserLink = linkTo(methodOn(UserApiController.class).register(null))
                 .withRel("register_user")
                 .withType("POST");
-        var loginLink = linkTo(methodOn(ApiAuthController.class).authenticate(null))
+        var loginLink = linkTo(methodOn(AuthApiController.class).authenticate(null))
                 .withRel("login")
                 .withType("POST");
-        var refreshLink = linkTo(methodOn(ApiAuthController.class).reAuthenticate(null))
+        var refreshLink = linkTo(methodOn(AuthApiController.class).reAuthenticate(null))
                 .withRel("refresh")
                 .withType("POST");
-        var logoutLink = linkTo(methodOn(ApiAuthController.class).logout(null))
+        var logoutLink = linkTo(methodOn(AuthApiController.class).logout(null))
                 .withRel("logout")
                 .withType("POST");
-        var loggedUserLink = linkTo(methodOn(ApiMeController.class).me())
+        var loggedUserLink = linkTo(methodOn(MeApiController.class).me())
                 .withRel("logged_user")
                 .withType("GET");
 

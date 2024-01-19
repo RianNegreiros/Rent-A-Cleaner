@@ -15,7 +15,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/uploads")
 @Profile({"dev", "docker"})
-public class ApiStorageController {
+public class StorageApiController {
 
     @Autowired
     private PhotoRepository photoRepository;

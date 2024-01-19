@@ -1,6 +1,6 @@
 package com.github.riannegreiros.ExpressCleaning.api.assemblers;
 
-import com.github.riannegreiros.ExpressCleaning.api.controllers.ApiApplicationController;
+import com.github.riannegreiros.ExpressCleaning.api.controllers.DailyApplicationApiController;
 import com.github.riannegreiros.ExpressCleaning.api.dtos.responses.DailyResponse;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class OpportunityAssembler implements Assembler<DailyResponse> {
     public void addLinks(DailyResponse resource) {
         var id = resource.getId();
 
-        var candidatarDiariaLink = linkTo(methodOn(ApiApplicationController.class).apply(id))
+        var candidatarDiariaLink = linkTo(methodOn(DailyApplicationApiController.class).apply(id))
                 .withRel("daily_application")
                 .withType("POST");
 

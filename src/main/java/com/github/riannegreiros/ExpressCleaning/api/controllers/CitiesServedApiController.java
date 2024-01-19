@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users/cities-served")
-public class ApiCitiesServedController {
+public class CitiesServedApiController {
     @Autowired
     private ApiCitiesServedService service;
 
